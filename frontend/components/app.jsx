@@ -4,6 +4,10 @@ var SessionStore = require('./../stores/session_store');
 var SessionApiUtil = require('./../util/session_api_util');
 
 var App = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
 
   componentDidMount: function () {
     SessionStore.addListener(this.forceUpdate.bind(this));
@@ -12,30 +16,43 @@ var App = React.createClass({
   greeting: function(){
     if (SessionStore.isUserLoggedIn()) {
       return (
-        <hgroup>
+        <div className="nav-right">
           <h2>Hi, {SessionStore.currentUser().username}!</h2>
-          <input type="submit" value="logout" onClick={ SessionApiUtil.logout } />
-        </hgroup>
+          <button className="sc-button-nav signup" onClick={ SessionApiUtil.logout } >Log Out</button>
+        </div>
       );
-    } else if (["/login", "/signup"].indexOf(this.props.location.pathname) === -1) {
+    // } else if (["/login", "/signup"].indexOf(this.props.location.pathname) === -1) {
+    } else {
       return (
-        <nav>
-          <Link to="/login" activeClassName="current">Login</Link>
-          &nbsp;or&nbsp;
-          <Link to="/signup" activeClassName="current">Sign up!</Link>
-        </nav>
+        <div className="nav-right">
+          <button className="sc-button-nav login" onClick={this.handleLogIn} >Log In</button>
+          or
+          <button className="sc-button-nav signup" onClick={this.handleSignUp} >Sign Up</button>
+        </div>
       );
     }
+  },
+
+  handleLogIn: function () {
+    this.context.router.push("/login");
+  },
+
+  handleSignUp: function () {
+    this.context.router.push("/signup");
   },
 
   render: function() {
     return (
       <div>
         <header>
-          <h1>SongCloud</h1>
-          { this.greeting() }
+          <nav>
+            <div className="nav-left"><a href="/" title="Home" className="nav-logo"/></div>
+            { this.greeting() }
+          </nav>
         </header>
-        {this.props.children}
+        <rbody>
+          {this.props.children}
+        </rbody>
       </div>
     );
   }

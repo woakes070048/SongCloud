@@ -66,35 +66,44 @@ var LoginForm = React.createClass({
     return this.props.location.pathname.slice(1);
   },
 
+  usernameChange: function (event) {
+    this.setState({ username: event.target.value });
+  },
+
+  passwordChange: function (event) {
+    this.setState({ password: event.target.value });
+  },
+
 	render: function () {
     var navLink;
+		var submitText;
     if (this.formType() === "login") {
       navLink = <Link to="/signup">sign up instead</Link>;
+      submitText = "Sign In";
     } else {
       navLink = <Link to="/login">log in instead</Link>;
+			submitText = "Sign Up";
     }
 
 		return (
-			<form onSubmit={this.handleSubmit}>
-        Please { this.formType() } or { navLink }
+			<div className="signin-div">
+				<form className="signin-form centered" onSubmit={this.handleSubmit}>
+	        Please { this.formType() } or { navLink }
 
-        { this.fieldErrors("base") }
+	        { this.fieldErrors("base") }
 
-        <br />
-				<label> Username:
-          { this.fieldErrors("username") }
-					<input type="text" valueLink={this.linkState("username")} />
-				</label>
+	        <br />
+					<input className="sc-input" type="text" value={this.state.username} onChange={this.usernameChange} placeholder="Enter Username" />
+					{ this.fieldErrors("username") }
 
-        <br />
-				<label> Password:
-          { this.fieldErrors("password") }
-					<input type="password" valueLink={this.linkState("password")} />
-				</label>
+	        <br />
+					<input className="sc-input" type="password" value={this.state.password} onChange={this.passwordChange} placeholder="Enter Password" />
+					{ this.fieldErrors("password") }
 
-        <br />
-				<input type="submit" value="Submit" />
-			</form>
+	        <br />
+					<input className="sc-button" type="submit" value={submitText} />
+				</form>
+			</div>
 		);
 	}
 });
