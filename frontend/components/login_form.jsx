@@ -74,12 +74,25 @@ var LoginForm = React.createClass({
     this.setState({ password: event.target.value });
   },
 
+  guestUserSignIn: function (event) {
+		event.preventDefault();
+
+		var formData = {
+			username: "user",
+			password: "password"
+		};
+
+		SessionApiUtil.login(formData);
+  },
+
 	render: function () {
     var navLink;
 		var submitText;
+		var guestUser;
     if (this.formType() === "login") {
       navLink = <Link to="/signup">sign up instead</Link>;
       submitText = "Sign In";
+			guestUser = <a href="" className="guest" onClick={this.guestUserSignIn}>Log in as guest</a>;
     } else {
       navLink = <Link to="/login">log in instead</Link>;
 			submitText = "Sign Up";
@@ -87,22 +100,25 @@ var LoginForm = React.createClass({
 
 		return (
 			<div className="signin-div">
-				<form className="signin-form centered" onSubmit={this.handleSubmit}>
-	        Please { this.formType() } or { navLink }
+				<div className="centered">
+					<form className="signin-form" onSubmit={this.handleSubmit}>
+		        Please { this.formType() } or { navLink }
 
-	        { this.fieldErrors("base") }
+		        { this.fieldErrors("base") }
 
-	        <br />
-					<input className="sc-input" type="text" value={this.state.username} onChange={this.usernameChange} placeholder="Enter Username" />
-					{ this.fieldErrors("username") }
+		        <br />
+						<input className="sc-input" type="text" value={this.state.username} onChange={this.usernameChange} placeholder="Enter Username" />
+						{ this.fieldErrors("username") }
 
-	        <br />
-					<input className="sc-input" type="password" value={this.state.password} onChange={this.passwordChange} placeholder="Enter Password" />
-					{ this.fieldErrors("password") }
+		        <br />
+						<input className="sc-input" type="password" value={this.state.password} onChange={this.passwordChange} placeholder="Enter Password" />
+						{ this.fieldErrors("password") }
 
-	        <br />
-					<input className="sc-button" type="submit" value={submitText} />
-				</form>
+		        <br />
+						<input className="sc-button" type="submit" value={submitText} />
+					</form>
+					{guestUser}
+				</div>
 			</div>
 		);
 	}

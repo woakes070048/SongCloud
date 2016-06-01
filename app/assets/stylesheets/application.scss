@@ -26,9 +26,16 @@ span, article, footer, time, small {
   border: 1px solid #e5e5e5;
   position: relative;
   margin: auto;
-}
-.signin-form {
   font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+
+}
+
+.signin-div a.guest {
+  display: block;
+  text-align: right;
+}
+
+.signin-form {
   font-size: 16px;
   width: 350px;
 }
