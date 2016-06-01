@@ -8,9 +8,9 @@
 
 ### Users
 
-- `GET /users/new`
-- `POST /users`
-- `PATCH /users`
+- `GET /user/new`
+- `POST /user`
+- `PATCH /user`
 
 ### Session
 

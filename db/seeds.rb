@@ -5,7 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
+Song.destroy_all
 
-User.create([
+users = User.create([
   { username: 'user', password: 'password'}
+])
+
+songs = Song.create([
+  { title: "song1", file_url: "song1.url", user_id: users[0].id },
+  { title: "song2", file_url: "song2.url", user_id: users[0].id },
+  { title: "song3", file_url: "song3.url", user_id: users[0].id },
+  { title: "song4", file_url: "song4.url", user_id: users[0].id },
+  { title: "song5", file_url: "song5.url", user_id: users[0].id }
 ])
