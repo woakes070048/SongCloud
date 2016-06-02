@@ -43,14 +43,15 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <header>
-          <nav>
+      <div className="body">
+        <header className="header">
+          <nav className="w-container">
             <div className="nav-left"><a href="/" title="Home" className="nav-logo"/></div>
+            <div className="nav-middle"></div>
             { this.greeting() }
           </nav>
         </header>
-        <rbody>
+        <rbody className="w-content">
           {this.props.children}
         </rbody>
       </div>
