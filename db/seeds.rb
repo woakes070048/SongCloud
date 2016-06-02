@@ -8,14 +8,33 @@
 User.destroy_all
 Song.destroy_all
 
-users = User.create([
-  { username: 'user', password: 'password'}
-])
+guest = User.create(
+  username: 'user',
+  password: 'password'
+)
+
+g_eazy = User.create(
+  username: 'G-Eazy',
+  password: 'password'
+  # img_url: "http://img2-ak.lst.fm/i/u/avatar170s/843278c4b76df259a24924548ebebc9c.jpg"
+)
 
 songs = Song.create([
-  { title: "song1", file_url: "song1.url", user_id: users[0].id },
-  { title: "song2", file_url: "song2.url", user_id: users[0].id },
-  { title: "song3", file_url: "song3.url", user_id: users[0].id },
-  { title: "song4", file_url: "song4.url", user_id: users[0].id },
-  { title: "song5", file_url: "song5.url", user_id: users[0].id }
+  { title: "Plastic Dreams (feat. Johanna Fey)",
+    file_url: "http://dl.last.fm/static/1464895870/134636129/ea14937d51b8123ab4ab9793ffac609085253161725537ac4e343fa39c024557/G-Eazy+-+Plastic+Dreams+%28feat.+Johanna+Fay%29.mp3",
+    img_url: "http://img2-ak.lst.fm/i/u/174s/d9f1b555a9cd4034c0aaf1e7fedb1b0d.jpg",
+    user_id: g_eazy.id
+  },
+
+  { title: "Lady Killers (feat. Hoodie Allen)",
+    file_url: "http://dl.last.fm/static/1464896742/134636130/afa36f775c9e0c5be9cb69052a030fd3c8460bc4f555efc21bec24e16344fe2f/G-Eazy+-+Lady+Killers+%28feat.+Hoodie+Allen%29.mp3",
+    img_url: "http://img2-ak.lst.fm/i/u/174s/d9f1b555a9cd4034c0aaf1e7fedb1b0d.jpg",
+    user_id: g_eazy.id
+  },
+
+  { title: "Hello",
+    file_url: "http://dl.last.fm/static/1464896811/134636128/bb3b24628ecb4f6f3d5c3ae4646048cbb924a4eff5afd068ca39f3a13b7f0819/G-Eazy+-+Hello.mp3",
+    img_url: "http://img2-ak.lst.fm/i/u/174s/d9f1b555a9cd4034c0aaf1e7fedb1b0d.jpg",
+    user_id: g_eazy.id
+  }
 ])

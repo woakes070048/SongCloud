@@ -25,6 +25,7 @@ body {
 
 .w-container {
   width: 1240px;
+  margin: auto;
 }
 .w-content {
   width: 1180px;
@@ -207,4 +208,54 @@ rbody {
 
 .song-index-list {
   list-style: none;
+}
+
+.song-index-item {
+  margin-bottom: 36px;
+  // padding-top: 0;
+  // background: yellow;
+}
+
+footer {
+  background: yellow;
+}
+
+.player-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #f2f2f2;
+  border-top: 1px solid rgba(0,0,0,.15);
+  height: 46px;
+}
+
+.float-left {
+  float: left;
+}
+
+.song-index-img {
+  margin-right: 15px
+}
+
+.song-index-play {
+  background-color: #f50;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-right: 5px;
+}
+
+.song-index-header {
+  // margin-bottom: 6px;
+  padding-top: 7px;
+}
+
+.song-index-header > * {
+  // margin-bottom: 6px;
+  // display: inline;
+  float: left
+}
+
+.interactive:hover {
+  cursor: pointer;
 }

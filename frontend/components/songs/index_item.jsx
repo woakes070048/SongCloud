@@ -22,8 +22,24 @@ module.exports = React.createClass({
     var song = this.props.song;
 
     return (
-      <li className="song-index-item">
-        <Link to={"/songs/" + song.id.toString()}>{song.title}</Link>&nbsp;
+      <li className="song-index-item group">
+        <Link to={"/songs/" + song.id.toString()}>
+          <img className="float-left song-index-img"src={song.img_url} />
+        </Link>
+
+        <div className="song-index-header">
+          <img className="song-index-play interactive" />
+
+          <Link to={"/users/" + song.user_id.toString()}>
+            {song.user_id}
+          </Link>
+
+          <br/>
+
+          <Link to={"/songs/" + song.id.toString()}>
+            {song.title}
+          </Link>
+        </div>
       </li>
     );
   }

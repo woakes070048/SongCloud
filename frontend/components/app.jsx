@@ -2,12 +2,12 @@ var React = require('react');
 var Link = require('react-router').Link;
 var SessionStore = require('./../stores/session_store');
 var SessionApiUtil = require('./../util/session_api_util');
+var PlayerFooter = require('./player_footer');
 
 var App = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-
 
   componentDidMount: function () {
     SessionStore.addListener(this.forceUpdate.bind(this));
@@ -44,7 +44,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div className="body">
-        <header className="header">
+        <header>
           <nav className="w-container">
             <div className="nav-left"><a href="/" title="Home" className="nav-logo"/></div>
             <div className="nav-middle"></div>
@@ -52,8 +52,13 @@ var App = React.createClass({
           </nav>
         </header>
         <rbody className="w-content">
+          <Link to={"/charts/"}>Charts</Link>
           {this.props.children}
         </rbody>
+        <footer>
+          test
+          <PlayerFooter/>
+        </footer>
       </div>
     );
   }
