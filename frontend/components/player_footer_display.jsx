@@ -4,25 +4,9 @@ var PlayerFooterStore = require('../../stores/player_footer_store');
 var PlayerFooterActions = require('../../actions/player_footer_actions');
 
 module.exports = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-
   getInitialState: function () {
-    var init = (PlayerFooterStore.song() === this.props.song) ? PlayerFooterStore.playState : false;
-    return({ playState: init });
+    return { playState: false };
   },
-
-  // editSong: function (event) {
-  //   event.preventDefault();
-  //   var url = "/songs/" + this.props.song.id.toString() + "/edit";
-  //   this.context.router.push(url);
-  // },
-  //
-  // deleteSong: function (event) {
-  //   event.preventDefault();
-  //   ClientActions.deleteSong(this.props.song.id);
-  // },
 
   componentDidMount: function () {
     this.playerFooterListener = PlayerFooterStore.addListener(this.toggleButtonState);

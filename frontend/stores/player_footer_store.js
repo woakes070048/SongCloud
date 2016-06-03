@@ -3,7 +3,7 @@ var Store = require('flux/utils').Store;
 var PlayerFooterConstants = require('../constants/player_footer_constants');
 
 var PlayerFooterStore = new Store(AppDispatcher);
-var _params = { song: "", playState: false };
+var _params = { song: null, playState: false };
 
 PlayerFooterStore.params = function () {
   return Object.assign({}, _params);
