@@ -74,7 +74,7 @@ module.exports = React.createClass({
             <div className={ playButtonState } onClick={this.toggleStore} />
           </div>
           <Link to={"/users/" + song.user_id.toString()}>
-            {song.user_id}
+            {song.artist}
           </Link>
 
           <br/>
