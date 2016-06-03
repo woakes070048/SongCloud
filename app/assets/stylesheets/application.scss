@@ -19,7 +19,7 @@ html, body, #content, .body {
 }
 
 body {
-  background: #f2f2f2;
+  background: #f2f2f2 asset-url('white.png') repeat-y 50%;
   padding-bottom: 75px;
 }
 
@@ -50,7 +50,7 @@ body {
     background-size: 960px 100px;
   }
   .w-container {
-    width: 1060px;
+    width: 960px;
   }
   .w-content {
     width: 920px;
@@ -66,6 +66,8 @@ body {
 
 header {
   background: #333;
+  position: fixed;
+  width: 100%;
   font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
 }
 
@@ -74,13 +76,6 @@ nav {
   height: 46px;
   width: inherit;
   margin: auto;
-}
-
-rbody {
-  height: 100%;
-  display: block;
-  background: white;
-  margin: 0px auto;
 }
 
 .nav-left {
@@ -178,6 +173,18 @@ rbody {
   margin-left: 10px;
 }
 
+rbody.w-content {
+  height: 100%;
+  display: block;
+  padding-top: 46px;
+  margin: 0px auto;
+}
+
+.body-content {
+  display: block;
+  padding-top: 30px;
+}
+
 .centered {
   position: absolute;
   top: 50%;
@@ -217,7 +224,6 @@ rbody {
 }
 
 footer {
-  background: yellow;
 }
 
 .player-footer {
