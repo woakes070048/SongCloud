@@ -1,25 +1,67 @@
 var React = require('react');
 var Link = require('react-router').Link;
-var ClientActions = require('../../actions/client_actions');
+var PlayerFooterStore = require('../../stores/player_footer_store');
+var PlayerFooterActions = require('../../actions/player_footer_actions');
 
 module.exports = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
-  editSong: function (event) {
-    event.preventDefault();
-    var url = "/songs/" + this.props.song.id.toString() + "/edit";
-    this.context.router.push(url);
+  getInitialState: function () {
+    return { playState: false };
   },
 
-  deleteSong: function (event) {
-    event.preventDefault();
-    ClientActions.deleteSong(this.props.song.id);
+  // editSong: function (event) {
+  //   event.preventDefault();
+  //   var url = "/songs/" + this.props.song.id.toString() + "/edit";
+  //   this.context.router.push(url);
+  // },
+  //
+  // deleteSong: function (event) {
+  //   event.preventDefault();
+  //   ClientActions.deleteSong(this.props.song.id);
+  // },
+
+  componentDidMount: function () {
+    this.playerFooterListener = PlayerFooterStore.addListener(this.toggleButtonState);
   },
+
+  componentWillUnmount: function () {
+    this.playerFooterListener.remove();
+  },
+
+  toggleButtonState: function () {
+    if (PlayerFooterStore.song() === this.props.song) {
+      this.setState({playState: PlayerFooterStore.playState()});
+    } else if (this.state.playState === true) {
+      this.setState({playState: false});
+    }
+  },
+
+  toggleStore: function () {
+    PlayerFooterActions.toggleButtonState({
+      song: this.props.song,
+      playState: !this.state.playState
+    });
+  },
+
+  // togglePlayerState: function () {
+  //   // this.setState({playState: !this.state.playState});
+  //
+  //   PlayerFooterActions.togglePlayerState({
+  //     songUrl: this.props.song.file_url,
+  //     playState: !this.state.playState
+  //   });
+  //
+  //   // if (PlayerFooterStore.params().song === this.props.song) {
+  //   //   this.state.play = !this.state.play;
+  //   // }
+  // },
 
   render: function () {
     var song = this.props.song;
+    var playButtonState = 'player-button-' + !this.state.playState;
 
     return (
       <li className="song-index-item group">
@@ -28,8 +70,9 @@ module.exports = React.createClass({
         </Link>
 
         <div className="song-index-header">
-          <img className="song-index-play interactive" />
-
+          <div className="song-index-play interactive">
+            <div className={ playButtonState } onClick={this.toggleStore} />
+          </div>
           <Link to={"/users/" + song.user_id.toString()}>
             {song.user_id}
           </Link>
