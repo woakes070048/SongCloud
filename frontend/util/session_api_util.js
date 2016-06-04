@@ -18,7 +18,7 @@ var SessionApiUtil = {
 			}
 		});
 	},
-  
+
 	logout: function () {
 		$.ajax({
 			url: '/api/session',
@@ -32,7 +32,7 @@ var SessionApiUtil = {
 			}
 		});
 	},
-  
+
 	fetchCurrentUser: function (complete) {
 		$.ajax({
 			url: '/api/session',

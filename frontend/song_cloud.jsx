@@ -30,6 +30,12 @@ var Router = (
   </Router>
 );
 
+if (SessionStore.currentUserHasBeenFetched()) {
+  // redirectIfNotLoggedIn();
+} else {
+  SessionApiUtil.fetchCurrentUser(); // redirectIfNotLoggedIn);
+}
+
 document.addEventListener('DOMContentLoaded', function(){
   var root = document.getElementById('content');
   ReactDOM.render(Router, root);

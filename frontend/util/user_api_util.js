@@ -4,7 +4,7 @@ var ErrorActions = require('./../actions/error_actions');
 var UserApiUtil = {
   signup: function (formData) {
     $.ajax({
-      url: '/api/user',
+      url: '/api/users',
       type: 'POST',
       dataType: 'json',
       data: {user: formData},
