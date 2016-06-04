@@ -9,7 +9,7 @@ module.exports = React.createClass({
   },
 
   getInitialState: function () {
-    var init = (PlayerFooterStore.song() === this.props.song) ? PlayerFooterStore.playState : false;
+    var init = (PlayerFooterStore.song() && PlayerFooterStore.song().id === this.props.song.id) ? PlayerFooterStore.playState() : false;
     return({ playState: init });
   },
 
