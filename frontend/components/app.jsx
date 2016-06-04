@@ -47,7 +47,12 @@ var App = React.createClass({
         <header>
           <nav className="w-container">
             <div className="nav-left"><a href="/" title="Home" className="nav-logo"/></div>
-            <div className="nav-middle"></div>
+            <div className="nav-middle">
+              <form class="nav-search">
+                <input className="nav-input" placeholder="Search for artists, bands, songs" />
+                <button className="nav-submit interactive" />
+              </form>
+            </div>
             { this.greeting() }
           </nav>
         </header>

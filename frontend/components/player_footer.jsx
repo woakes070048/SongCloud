@@ -40,7 +40,7 @@ module.exports = React.createClass({
           <div className={ "song-index-play interactive fake-player " }>
             <div className={ playButtonState } onClick={this.toggleStore} />
           </div>
-          <audio id="player-footer" src="" controls />
+          <audio id="player-footer" preload="metadata" />
         </div>
       </div>
     );
