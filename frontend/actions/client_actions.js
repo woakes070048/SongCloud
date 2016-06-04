@@ -1,25 +1,28 @@
-var ApiUtil = require('../util/song_api_util');
+var SongApiUtil = require('../util/song_api_util');
+var UserApiUtil = require('../util/user_api_util');
 
 module.exports = {
   fetchSongs: function () {
-    ApiUtil.fetchSongs();
+    SongApiUtil.fetchSongs();
   },
 
   getSong: function (id) {
-    ApiUtil.getSong(id);
+    SongApiUtil.getSong(id);
   },
 
   createSong: function (data) {
-    ApiUtil.createSong(data);
+    SongApiUtil.createSong(data);
   },
 
   editSong: function (data) {
-    ApiUtil.updateSong(data);
+    SongApiUtil.updateSong(data);
   },
 
   deleteSong: function (id) {
-    ApiUtil.deleteSong(id);
+    SongApiUtil.deleteSong(id);
+  },
+
+  getUser: function(id) {
+    UserApiUtil.getUser(id);
   }
 };
-
-window.ApiUtil = ApiUtil;

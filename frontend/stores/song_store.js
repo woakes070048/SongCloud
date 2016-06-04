@@ -37,15 +37,17 @@ SongStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case SongConstants.SONGS_RECEIVED:
       resetSongs(payload.songs);
+      this.__emitChange();
       break;
     case SongConstants.SONG_RECEIVED:
       setSong(payload.song);
+      this.__emitChange();
       break;
     case SongConstants.SONG_REMOVED:
       removeSong(payload.song);
+      this.__emitChange();
       break;
   }
-  this.__emitChange();
 };
 
 module.exports = SongStore;

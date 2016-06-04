@@ -13,6 +13,6 @@ class Song < ActiveRecord::Base
   private
 
   def ensure_img_url
-    self.img_url ||= ActionController::Base.helpers.image_path('default_profile_img.jpg')
+    self.img_url ||= self.artist.img_url
   end
 end

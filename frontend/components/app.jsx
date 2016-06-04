@@ -57,10 +57,7 @@ var App = React.createClass({
           </nav>
         </header>
         <rbody className="w-content">
-          <div className="body-content">
-            <Link to={"/charts/"}>Charts</Link>
-            {this.props.children}
-          </div>
+          {this.props.children}
         </rbody>
         <footer>
           <PlayerFooter/>

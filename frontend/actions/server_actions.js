@@ -1,5 +1,6 @@
 var AppDispatcher = require('../dispatcher/dispatcher');
 var SongConstants = require('../constants/song_constants');
+var UserConstants = require('../constants/user_constants');
 
 module.exports = {
   receiveAll: function (songs) {
@@ -20,6 +21,13 @@ module.exports = {
     AppDispatcher.dispatch({
       actionType: SongConstants.SONG_REMOVED,
       song: song
+    });
+  },
+
+  receiveUser: function (user) {
+    AppDispatcher.dispatch({
+      actionType: UserConstants.USER_RECEIVED,
+      user: user
     });
   }
 };

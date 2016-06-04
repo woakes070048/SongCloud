@@ -5,8 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.destroy_all
-Song.destroy_all
+# User.destroy_all
+# Song.destroy_all
 
 guest = User.create(
   username: 'user',
@@ -15,8 +15,9 @@ guest = User.create(
 
 g_eazy = User.create(
   username: 'G-Eazy',
-  password: 'password'
-  # img_url: "http://img2-ak.lst.fm/i/u/avatar170s/843278c4b76df259a24924548ebebc9c.jpg"
+  password: 'password',
+  img_url: "http://img2-ak.lst.fm/i/u/avatar170s/843278c4b76df259a24924548ebebc9c.jpg",
+  header_img_url: "http://static.wixstatic.com/media/4ac546_8086d6e35cc94492bf4493169ef5edf2.png/v1/fill/w_783,h_261,al_c,usm_0.66_1.00_0.01/4ac546_8086d6e35cc94492bf4493169ef5edf2.png"
 )
 
 songs = Song.create([

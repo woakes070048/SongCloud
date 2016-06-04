@@ -63,10 +63,11 @@ module.exports = React.createClass({
   render: function () {
     var song = this.props.song;
     var playButtonState = 'player-button-' + !this.state.playState;
+    var songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
 
     return (
       <li className="song-index-item group">
-        <Link to={"/songs/" + song.id.toString()}>
+        <Link to={songLink}>
           <img className="float-left song-index-img"src={song.img_url} />
         </Link>
 
@@ -74,13 +75,13 @@ module.exports = React.createClass({
           <div className="song-index-play interactive">
             <div className={ playButtonState } onClick={this.toggleStore} />
           </div>
-          <Link to={"/users/" + song.user_id.toString()}>
+          <Link to={song.user_id + '/' + song.artist}>
             {song.artist}
           </Link>
 
           <br/>
 
-          <Link to={"/songs/" + song.id.toString()}>
+          <Link to={songLink}>
             {song.title}
           </Link>
         </div>

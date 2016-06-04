@@ -11,13 +11,13 @@ class Api::UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.includes(:songs).find(params[:id])
+		@user = User.find(params[:id])
 		render "api/users/show"
 	end
 
 	private
 
 	def user_params
-		params.require(:user).permit(:username, :password)
+		params.require(:user).permit(:username, :password, :img_url, :header_img_url)
 	end
 end

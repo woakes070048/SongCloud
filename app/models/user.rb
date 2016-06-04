@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   after_initialize :ensure_session_token
-  before_validation :ensure_session_token_uniqueness
+  before_validation :ensure_session_token_uniqueness, :ensure_img_url
 
   has_many :songs
 
@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
 			self.session_token = new_session_token
 		end
 	end
+
+  def ensure_img_url
+    self.img_url ||= ActionController::Base.helpers.image_path('default_profile_img.jpg')
+  end
 end
