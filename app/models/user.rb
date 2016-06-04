@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_validation :ensure_session_token_uniqueness, :ensure_img_url
 
-  has_many :songs
+  has_many :songs, dependent: :destroy
 
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)

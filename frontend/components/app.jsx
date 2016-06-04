@@ -15,9 +15,10 @@ var App = React.createClass({
 
   greeting: function(){
     if (SessionStore.isUserLoggedIn()) {
+      var curUser = SessionStore.currentUser();
       return (
         <div className="nav-right">
-          <h2>Hi, {SessionStore.currentUser().username}!</h2>
+          <Link to={curUser.id + '/' + curUser.username} >{curUser.username}</Link>
           <button className="sc-button-nav signup" onClick={ SessionApiUtil.logout } >Log Out</button>
         </div>
       );
