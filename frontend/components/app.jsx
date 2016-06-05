@@ -47,7 +47,7 @@ var App = React.createClass({
       <div className="body">
         <header>
           <nav className="w-container">
-            <div className="nav-left"><a href="/" title="Home" className="nav-logo"/></div>
+            <div className="nav-left"><a href="#/" title="Home" className="nav-logo"/></div>
             <div className="nav-middle">
               <form class="nav-search">
                 <input className="nav-input" placeholder="Search for artists, bands, songs" />

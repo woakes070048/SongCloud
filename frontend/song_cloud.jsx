@@ -24,8 +24,8 @@ var Router = (
       <Route path="charts" component={ SongsIndex } />
       <Route path="login" component={ LoginForm } />
       <Route path="signup" component={ LoginForm } />
-      <Route path=":userId/:username" component={ UserShow } />
       <Route path=":userId/:username/:songId/:songTitle" component={ SongShow } />
+      <Route path=":userId/:username" component={ UserShow } />
     </Route>
   </Router>
 );
