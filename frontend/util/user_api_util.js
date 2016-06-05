@@ -9,7 +9,9 @@ var UserApiUtil = {
       url: '/api/users',
       type: 'POST',
       dataType: 'json',
-      data: {user: formData},
+      contentType: false,
+      processData: false,
+      data: formData,
       success: function (currentUser) {
         SessionActions.receiveCurrentUser(currentUser);
       },

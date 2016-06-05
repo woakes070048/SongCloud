@@ -24,7 +24,7 @@ module.exports = React.createClass({
     this.setState({
       username: user.username,
       songs: user.songs,
-      img_url: user.img_url,
+      imageUrl: user.image_url,
       header_img_url: user.header_img_url
     });
   },
@@ -41,7 +41,7 @@ module.exports = React.createClass({
               })
             }
           </ul>
-          <img src={this.state.img_url} />
+          <img src={this.state.imageUrl} />
           <img src={this.state.header_img_url} />
         </div>
       </div>

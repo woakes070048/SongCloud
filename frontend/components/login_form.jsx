@@ -12,7 +12,9 @@ var LoginForm = React.createClass({
   getInitialState: function () {
     return {
       username: "",
-      password: ""
+      password: "",
+			imageFile: null,
+			imageUrl: null
     };
   },
 
@@ -39,14 +41,21 @@ var LoginForm = React.createClass({
 	handleSubmit: function (e) {
 		e.preventDefault();
 
-		var formData = {
-			username: this.state.username,
-			password: this.state.password
-		};
+		var formData;
 
     if (this.props.location.pathname === "/login") {
+			formData = {
+				username: this.state.username,
+				password: this.state.password
+			};
       SessionApiUtil.login(formData);
     } else {
+			formData = new FormData();
+			formData.append("user[username]", this.state.username);
+			formData.append("user[password]", this.state.password);
+			if (this.state.imageFile) {
+				formData.append("user[image]", this.state.imageFile);
+			}
       UserApiUtil.signup(formData);
     }
 	},
@@ -74,6 +83,25 @@ var LoginForm = React.createClass({
     this.setState({ password: event.target.value });
   },
 
+	updateFile: function (e) {
+    var file = e.currentTarget.files[0];
+		if (file) {
+			if (file.size > 2097152) {
+				alert('Maximum upload file size: 2MB');
+				e.currentTarget.value = "";
+			} else {
+		    var fileReader = new FileReader();
+		    fileReader.onloadend = function () {
+		      this.setState({ imageFile: file, imageUrl: fileReader.result });
+		    }.bind(this);
+
+		    if (file) {
+		      fileReader.readAsDataURL(file);
+		    }
+			}
+		}
+  },
+
   guestUserSignIn: function (event) {
 		event.preventDefault();
 
@@ -89,6 +117,8 @@ var LoginForm = React.createClass({
     var navLink;
 		var submitText;
 		var guestUser;
+		var updateFile;
+
     if (this.formType() === "login") {
       navLink = <Link to="/signup">sign up instead</Link>;
       submitText = "Sign In";
@@ -96,6 +126,12 @@ var LoginForm = React.createClass({
     } else {
       navLink = <Link to="/login">log in instead</Link>;
 			submitText = "Sign Up";
+			updateFile = (
+				<div>
+				<input type="file" className="user-img" onChange={this.updateFile} accept="image/jpeg, image/png, image/gif"/>
+				<img src={this.state.imageUrl} />
+				</div>
+			);
     }
 
 		return (
@@ -104,8 +140,7 @@ var LoginForm = React.createClass({
 					<form className="signin-form" onSubmit={this.handleSubmit}>
 		        Please { this.formType() } or { navLink }
 
-		        { this.fieldErrors("base") }
-
+						{ this.fieldErrors("image") }
 		        <br />
 						<input className="sc-input" type="text" value={this.state.username} onChange={this.usernameChange} placeholder="Enter Username" />
 						{ this.fieldErrors("username") }
@@ -115,9 +150,11 @@ var LoginForm = React.createClass({
 						{ this.fieldErrors("password") }
 
 		        <br />
+						{ this.fieldErrors("base") }
+						{updateFile}
+						{guestUser}
 						<input className="sc-button" type="submit" value={submitText} />
 					</form>
-					{guestUser}
 				</div>
 			</div>
 		);

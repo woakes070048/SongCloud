@@ -5,8 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# User.destroy_all
-# Song.destroy_all
+User.destroy_all
+Song.destroy_all
 
 guest = User.create(
   username: 'user',
