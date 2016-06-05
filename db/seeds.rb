@@ -13,29 +13,42 @@ guest = User.create(
   password: 'password'
 )
 
-g_eazy = User.create(
-  username: 'G-Eazy',
-  password: 'password',
-  img_url: "http://img2-ak.lst.fm/i/u/avatar170s/843278c4b76df259a24924548ebebc9c.jpg",
-  header_img_url: "http://static.wixstatic.com/media/4ac546_8086d6e35cc94492bf4493169ef5edf2.png/v1/fill/w_783,h_261,al_c,usm_0.66_1.00_0.01/4ac546_8086d6e35cc94492bf4493169ef5edf2.png"
-)
+balmorhea = User.new(username: "Balmorhea", password: "password")
+douglas_dare = User.new(username: "Douglas Dare", password: "password")
+dream_koala = User.new(username: "Dream Koala", password: "password")
+florrie = User.new(username: "Florrie", password: "password")
+g_eazy = User.new(username: "G-Eazy", password: "password")
+graveyard_artist = User.new(username: "Graveyard Artist", password: "password")
+justin_townes_earle = User.new(username: "Justin Townes Earle", password: "password+earle")
+ladytron = User.new(username: "Ladytron", password: "password")
+like_moths_to_flames = User.new(username: "Like Moths to Flames", password: "password+to+flames")
+motorama = User.new(username: "Motorama", password: "password")
+ocean_jet = User.new(username: "Ocean Jet", password: "password")
+pain = User.new(username: "Pain", password: "password+great+pretender.png")
+stoned_jesus = User.new(username: "Stoned Jesus", password: "password")
+summer_heart = User.new(username: "Summer Heart", password: "password")
+summer_of_haze = User.new(username: "Summer Of Haze Artist", password: "password")
+the_mynabirds = User.new(username: "The Mynabirds", password: "password+haze+artist")
+the_thermals = User.new(username: "The Thermals", password: "password")
+vacationer = User.new(username: "Vacationer", password: "password")
+wu_lyf = User.new(username: "Wu Lyf", password: "password")
 
-songs = Song.create([
-  { title: "Plastic Dreams (feat. Johanna Fey)",
-    file_url: "http://dl.last.fm/static/1464895870/134636129/ea14937d51b8123ab4ab9793ffac609085253161725537ac4e343fa39c024557/G-Eazy+-+Plastic+Dreams+%28feat.+Johanna+Fay%29.mp3",
-    img_url: "http://img2-ak.lst.fm/i/u/174s/d9f1b555a9cd4034c0aaf1e7fedb1b0d.jpg",
-    user_id: g_eazy.id
-  },
-
-  { title: "Lady Killers (feat. Hoodie Allen)",
-    file_url: "http://dl.last.fm/static/1464896742/134636130/afa36f775c9e0c5be9cb69052a030fd3c8460bc4f555efc21bec24e16344fe2f/G-Eazy+-+Lady+Killers+%28feat.+Hoodie+Allen%29.mp3",
-    img_url: "http://img2-ak.lst.fm/i/u/174s/d9f1b555a9cd4034c0aaf1e7fedb1b0d.jpg",
-    user_id: g_eazy.id
-  },
-
-  { title: "Hello",
-    file_url: "http://dl.last.fm/static/1464896811/134636128/bb3b24628ecb4f6f3d5c3ae4646048cbb924a4eff5afd068ca39f3a13b7f0819/G-Eazy+-+Hello.mp3",
-    img_url: "http://img2-ak.lst.fm/i/u/174s/d9f1b555a9cd4034c0aaf1e7fedb1b0d.jpg",
-    user_id: g_eazy.id
-  }
-])
+balmorhea.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/balmorhea.jpg"; balmorhea.save
+douglas_dare.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/douglas+dare.jpg"; douglas_dare.save
+dream_koala.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/dream+koala.jpg"; dream_koala.save
+florrie.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/florrie.jpg"; florrie.save
+g_eazy.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/g-eazy.jpg"; g_eazy.save
+graveyard_artist.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/graveyard+artist.jpg"; graveyard_artist.save
+justin_townes_earle.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/justin+townes+earle.jpg"; justin_townes_earle.save
+ladytron.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/Ladytron.jpg"; ladytron.save
+like_moths_to_flames.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/like+moths+to+flames.jpg"; like_moths_to_flames.save
+motorama.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/motorama.jpg"; motorama.save
+ocean_jet.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/ocean+jet.jpg"; ocean_jet.save
+pain.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/pain+the+great+pretender.png"; pain.save
+stoned_jesus.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/pain.jpg"; stoned_jesus.save
+summer_heart.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/stoned+jesus.jpg"; summer_heart.save
+summer_of_haze.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/summer+heart.jpg"; summer_of_haze.save
+the_mynabirds.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/summer+of+haze+artist.jpg"; the_mynabirds.save
+the_thermals.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/the+mynabirds.jpg"; the_thermals.save
+vacationer.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/the+thermals.jpg"; vacationer.save
+wu_lyf.image = "https://s3.amazonaws.com/songcloud-dev/users/seeds/images/artist/vacationer.jpg"; wu_lyf.save
