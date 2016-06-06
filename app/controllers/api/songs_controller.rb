@@ -23,6 +23,11 @@ class Api::SongsController < ApplicationController
     end
   end
 
+	def show
+		@song = Song.find(params[:id])
+		render "api/songs/show"
+	end
+
   def destroy
     @song = Song.find(params[:id])
 

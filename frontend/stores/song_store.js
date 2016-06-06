@@ -51,3 +51,4 @@ SongStore.__onDispatch = function (payload) {
 };
 
 module.exports = SongStore;
+window.SongStore = SongStore;
