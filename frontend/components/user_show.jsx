@@ -15,6 +15,10 @@ module.exports = React.createClass({
     ClientActions.getUser(this.props.params.userId);
   },
 
+  componentWillReceiveProps: function (newProps) {
+    ClientActions.getUser(newProps.params.userId);
+  },
+
   componentWillUnmount: function () {
     this.userListener.remove();
   },
@@ -32,18 +36,22 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div>
-        <div className="header-image">
-          {this.state.username}
-          <ul className="song-index-list">
-            {
-              this.state.songs.map(function (song) {
-                return (<SongIndexItem key={song.id} song={song} />);
-              })
-            }
-          </ul>
-          <img src={this.state.imageUrl} />
-          <img src={this.state.header_img_url} />
+        <div className="profile-header group">
+          <div className="thumbnail size_200_200 circular" >
+            <img src={this.state.imageUrl} />
+          </div>
+          <h2 className="profile-info" >{this.state.username}</h2>
         </div>
+        <div className="user-menu">
+
+        </div>
+        <ul className="song-index-list">
+          {
+            this.state.songs.map(function (song) {
+              return (<SongIndexItem key={song.id} song={song} />);
+            })
+          }
+        </ul>
       </div>
     );
   }
