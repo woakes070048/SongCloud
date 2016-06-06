@@ -68,7 +68,7 @@ module.exports = React.createClass({
     return (
       <li className="song-index-item group">
         <Link to={songLink}>
-          <img className="float-left song-index-img"src={song.img_url} />
+          <img className="float-left song-index-img"src={song.image_url} />
         </Link>
 
         <div className="song-index-header">

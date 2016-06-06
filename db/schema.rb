@@ -11,20 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605024047) do
+ActiveRecord::Schema.define(version: 20160605225941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "songs", force: :cascade do |t|
-    t.string   "title",                       null: false
-    t.string   "file_url",                    null: false
-    t.string   "img_url",                     null: false
+    t.string   "title",                              null: false
     t.text     "description"
-    t.integer  "user_id",                     null: false
-    t.boolean  "private",     default: false, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "user_id",                            null: false
+    t.boolean  "private",            default: false, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "songs", ["user_id"], name: "index_songs_on_user_id", using: :btree
@@ -35,8 +41,6 @@ ActiveRecord::Schema.define(version: 20160605024047) do
     t.string   "session_token",      null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "img_url"
-    t.string   "header_img_url"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
