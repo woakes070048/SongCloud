@@ -7,7 +7,7 @@ var SongForm = require('./form');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { songs: [], filter: this.props.filter};
+    return { songs: SongStore.all(this.props.filter) };
   },
 
   componentDidMount: function () {
@@ -16,7 +16,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.fetchSongs(this.propsParams(newProps));
+    this.setState({ songs: SongStore.all(newProps.filter) });
   },
 
   componentWillUnmount: function () {
@@ -24,23 +24,7 @@ module.exports = React.createClass({
   },
 
   getSongs: function () {
-    this.setState({ songs: SongStore.all(this.state.filter) });
-  },
-
-  // filter: function () {
-  //   if (this.props.filter) {
-  //     return {user: this.props.user};
-  //   } else {
-  //
-  //   }
-  // },
-
-  propsParams: function (newProps) {
-    if (newProps.params && newProps.params.userId) {
-      return {user_id: parseInt(newProps.params.userId) };
-    } else {
-
-    }
+    this.setState({ songs: SongStore.all(this.props.filter) });
   },
 
   render: function () {
