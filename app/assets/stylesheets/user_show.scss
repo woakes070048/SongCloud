@@ -18,30 +18,14 @@
   }
 }
 
-.thumbnail {
-  position: relative;
-  overflow: hidden;
-}
-
-.thumbnail img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 100%;
-  width: auto;
-  -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
-}
-
 .profile-header .thumbnail {
   float: left;
   margin-right: 30px;
-}
-
-.size_200_200 {
   width: 200px;
   height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .circular {

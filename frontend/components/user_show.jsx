@@ -6,6 +6,11 @@ var SongIndexItem = require('./songs/index_item');
 
 
 module.exports = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
+
   getInitialState: function () {
     return {};
   },
@@ -26,19 +31,28 @@ module.exports = React.createClass({
   setUser: function () {
     var user = UserStore.user();
     this.setState({
+      id: user.id,
       username: user.username,
-      imageUrl: user.image_url,
-      header_img_url: user.header_img_url
+      imageUrl: user.image_url
     });
   },
 
+  goToPage: function (link) {
+    this.context.router.push(link);
+  },
+
   render: function () {
+    var divImage;
+    if (this.state.imageUrl) {
+      divImage = {
+        backgroundImage: 'url(' + this.state.imageUrl + ')'
+      };
+    }
+
     return (
       <div>
         <div className="profile-header group">
-          <div className="thumbnail size_200_200 circular" >
-            <img src={this.state.imageUrl} />
-          </div>
+          <div className="thumbnail circular" style={divImage}/>
           <h2 className="profile-info" >{this.state.username}</h2>
         </div>
         <div className="user-menu">

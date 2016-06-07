@@ -47,6 +47,6 @@ class Api::SongsController < ApplicationController
 	end
 
 	def filter
-		params[:filter]
+		params[:filter].permit(:user_id) if params[:filter]
 	end
 end

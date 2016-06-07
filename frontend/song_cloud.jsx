@@ -26,11 +26,11 @@ var Router = (
       <Route path="charts" component={ Charts } />
       <Route path="login" component={ LoginForm } />
       <Route path="signup" component={ LoginForm } />
+      <Route path=":userId/:username/:songId/:songTitle" component={ SongShow } />
       <Route path=":userId/:username" component={ UserShow } >
         <IndexRoute component={ UserSongs } />
         <Route path="songs" component={ UserSongs } />
       </Route>
-      <Route path=":userId/:username/:songId/:songTitle" component={ SongShow } />
     </Route>
   </Router>
 );
