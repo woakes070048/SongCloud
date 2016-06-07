@@ -66,24 +66,21 @@ module.exports = React.createClass({
     var songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
 
     return (
-      <li className="song-index-item group">
-        <Link to={songLink}>
-          <img className="float-left song-index-img"src={song.image_url} />
+      <li className="song-index-item">
+        <Link to={songLink} className="song-index-img">
+          <img src={song.image_url} />
         </Link>
 
         <div className="song-index-header">
-          <div className="song-index-play interactive">
-            <div className={ playButtonState } onClick={this.toggleStore} />
+          <div className="song-index-button-and-info">
+            <div className="song-index-play interactive">
+              <div className={ playButtonState } onClick={this.toggleStore} />
+            </div>
+            <div className="song-index-info">
+              <Link to={song.user_id + '/' + song.artist} className="song-index-artist">{song.artist}</Link>
+              <Link to={songLink} className="song-index-title">{song.title}</Link>
+            </div>
           </div>
-          <Link to={song.user_id + '/' + song.artist}>
-            {song.artist}
-          </Link>
-
-          <br/>
-
-          <Link to={songLink}>
-            {song.title}
-          </Link>
         </div>
       </li>
     );

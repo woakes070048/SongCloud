@@ -13,7 +13,7 @@
  */
 
 // a
-html, body, header, nav, h1,
+html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
@@ -21,11 +21,24 @@ span, article, footer, time, small {
   margin: 0;
   border: 0;
   padding: 0;
+  outline: 0;
+  box-sizing: inherit;
   font: inherit;
   text-align: inherit;
   text-decoration: inherit;
   color: inherit;
+  vertical-align: inherit;
   background: transparent;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
 }
 
 input:focus, select:focus,
@@ -282,6 +295,7 @@ rbody.w-content {
 
 .song-index-item {
   margin-bottom: 36px;
+  display: flex;
   // padding-top: 0;
   // background: yellow;
 }
@@ -290,6 +304,18 @@ rbody.w-content {
   margin-right: 15px;
   width: 160px;
   height: 160px;
+}
+
+.song-index-header {
+  // margin-bottom: 6px;
+  display: block;
+  padding-top: 7px;
+  flex: 1;
+  min-height: 43px;
+}
+
+.song-index-button-and-info {
+  display: flex;
 }
 
 .song-index-play {
@@ -305,7 +331,6 @@ rbody.w-content {
   background-size: 20px 24px;
   background-position: center center;
   height: 100%;
-
 }
 
 .player-button-false {
@@ -315,15 +340,20 @@ rbody.w-content {
   height: 100%;
 }
 
-.song-index-header {
-  // margin-bottom: 6px;
-  padding-top: 7px;
+.song-index-info {
+  flex: 1;
 }
 
-.song-index-header > * {
-  // margin-bottom: 6px;
-  // display: inline;
-  float: left
+.song-index-artist {
+  display: block;
+  color: #999;
+  font-size: 12px;
+}
+
+.song-index-title {
+  display: block;
+  color: #333;
+  font-size: 15px;
 }
 
 .interactive:hover {
