@@ -16,6 +16,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
+    ClientActions.fetchSongs(newProps.filter);
     this.setState({ songs: SongStore.all(newProps.filter) });
   },
 
