@@ -7,16 +7,16 @@ var SongIndexItem = require('./songs/index_item');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return {songs: []};
+    return {};
   },
 
   componentDidMount: function () {
     this.userListener = UserStore.addListener(this.setUser);
-    ClientActions.getUser(this.props.params.userId);
+    ClientActions.getUser(parseInt(this.props.params.userId));
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getUser(newProps.params.userId);
+    ClientActions.getUser(parseInt(newProps.params.userId));
   },
 
   componentWillUnmount: function () {
@@ -27,7 +27,6 @@ module.exports = React.createClass({
     var user = UserStore.user();
     this.setState({
       username: user.username,
-      songs: user.songs,
       imageUrl: user.image_url,
       header_img_url: user.header_img_url
     });
@@ -45,13 +44,7 @@ module.exports = React.createClass({
         <div className="user-menu">
 
         </div>
-        <ul className="song-index-list">
-          {
-            this.state.songs.map(function (song) {
-              return (<SongIndexItem key={song.id} song={song} />);
-            })
-          }
-        </ul>
+        {this.props.children}
       </div>
     );
   }

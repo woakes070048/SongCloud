@@ -2,8 +2,8 @@ var SongApiUtil = require('../util/song_api_util');
 var UserApiUtil = require('../util/user_api_util');
 
 module.exports = {
-  fetchSongs: function () {
-    SongApiUtil.fetchSongs();
+  fetchSongs: function (filter) {
+    SongApiUtil.fetchSongs(filter);
   },
 
   getSong: function (id) {

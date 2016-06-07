@@ -1,9 +1,10 @@
 var ServerActions = require('../actions/server_actions');
 
 module.exports = {
-  fetchSongs: function () {
+  fetchSongs: function (filter) {
     $.ajax({
       url: "api/songs",
+      data: filter,
       success: function (songs) {
         ServerActions.receiveAll(songs);
       }

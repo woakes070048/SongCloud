@@ -1,6 +1,8 @@
 class Api::SongsController < ApplicationController
 	def index
-		@songs = Song.includes(:artist).all
+		songs = Song.all
+		songs = songs.where(filter) if filter
+		@songs = songs.includes(:artist)
 		render :index
 	end
 
@@ -42,5 +44,9 @@ class Api::SongsController < ApplicationController
 
 	def song_params
 		params.require(:song).permit(:title, :user_id, :file, :image, :description, :private)
+	end
+
+	def filter
+		params[:filter]
 	end
 end
