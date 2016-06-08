@@ -46,9 +46,14 @@ textarea:focus, button:focus {
   outline: none;
 }
 
-html, body, #content, .body {
-  min-height: 500px;
+html, body {
+  height: 100%;
 }
+
+#content, .body, .user-body {
+  height: inherit;
+}
+
 
 body {
   background: #f2f2f2 asset-url('white.png') repeat-y 50%;
@@ -287,6 +292,10 @@ rbody.w-content {
 .signin-form {
   font-size: 16px;
   width: 350px;
+}
+
+.song-index {
+  min-height: 500px;
 }
 
 .song-index-list {

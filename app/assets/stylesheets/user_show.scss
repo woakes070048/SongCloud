@@ -9,12 +9,31 @@
   padding: 30px;
 }
 
+
+.content-with-sidebar {
+  margin-top: 20px;
+  position: relative;
+  min-height: 500px;
+}
+
+.content-with-sidebar .song-index {
+  height: inherit;
+  padding-right: 30px;
+  margin-right: 330px;
+  border-right: 1px solid #f2f2f2;
+}
+
 @media (max-width: 1079px) {
   .profile-header {
     margin-left: -20px;
     margin-right: -20px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .content-with-sidebar .song-index {
+    padding-right: 20px;
+    margin-right: 320px;
   }
 }
 
@@ -71,4 +90,28 @@
   cursor: default;
   border-bottom: 1px solid #f50;
   color: #f50;
+}
+
+.content {
+  position: relative;
+  margin-top: 20px;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  right: 0px;
+}
+
+.sidebar-footer {
+  padding-top: 11px;
+  padding-bottom: 80px;
+  color: #ccc;
+  font-size: 11px;
+}
+
+.sidebar-footer a {
+  color: #aaa;
 }

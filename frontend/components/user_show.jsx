@@ -54,9 +54,9 @@ module.exports = React.createClass({
     } else {
       songsLinkState = 'active';
     }
-    
+
     return (
-      <div>
+      <div className="user-body">
         <div className="profile-header group">
           <div className="thumbnail circular" style={divStyle}/>
           <h2 className="profile-info" >{this.state.username}</h2>
@@ -65,7 +65,17 @@ module.exports = React.createClass({
           <Link to={this.props.params.userId + '/' + this.props.params.username + '/songs'} className={songsLinkState} >Songs</Link>
           <Link to={this.props.params.userId + '/' + this.props.params.username + '/playlists'} className={playlistsLinkState} >Playlists</Link>
         </div>
-        {this.props.children}
+        <div className="content-with-sidebar">
+          {this.props.children}
+          <div className="user-show sidebar">
+            <div className="sidebar-footer">
+              ©2016
+              <a href="https://soundcloud.com"> SoundCloud </a>
+              Clone by Eric Moy -
+              <a href="https://github.com/EricMoy/SongCloud"> (Github Page)</a>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
