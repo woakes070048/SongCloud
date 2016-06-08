@@ -13,11 +13,11 @@ module.exports = React.createClass({
 
   componentDidMount: function () {
     this.songListener = SongStore.addListener(this.setSong);
-    ClientActions.getSong(this.props.params.songId);
+    ClientActions.getSong(parseInt(this.props.params.songId));
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getSong(newProps.params.songId);
+    ClientActions.getSong(parseInt(this.props.params.songId));
   },
 
   componentWillUnmount: function () {
@@ -31,10 +31,40 @@ module.exports = React.createClass({
 
 
   render: function () {
+    var song = this.state.song;
+    var divStyle;
+    // if (song) {
+      divStyle = {
+        backgroundImage: 'url(' + song.artist_img + ')'
+      };
+    // }
+
     return (
       <div>
-        <SongIndexItem song={this.state.song} songShow={true}/>
+        <SongIndexItem song={song} songShow={true}/>
+        <div className="song-content">
+          <div className="about-main group">
+            <div className="about-left">
+              <Link to={song.user_id + '/' + song.artist}>
+                <div className="about-img thumbnail circular" style={divStyle} />
+              </Link>
+              <Link to={song.user_id + '/' + song.artist} >{song.artist}</Link>
+            </div>
+            <div className="about-right">
+
+            </div>
+          </div>
+
+        <div className="user-show sidebar">
+          <div className="sidebar-footer">
+            ©2016
+            <a target="_blank" href="https://soundcloud.com"> SoundCloud </a>
+            Clone by Eric Moy -
+            <a target="_blank" href="https://github.com/EricMoy/SongCloud"> (Github Page)</a>
+          </div>
+        </div>
       </div>
+    </div>
     );
   }
 });

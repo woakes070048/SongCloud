@@ -90,22 +90,20 @@ module.exports = React.createClass({
     );
 
     var songShow = (
-          <div className="song-show-header group">
-            <div className="song-show-button-and-info">
-              <div className="song-index-play big-play interactive">
-                <div className={ playButtonState  + ' big-play' } onClick={this.toggleStore} />
-              </div>
-
-
-              <div className="song-show-info">
-                <div className="info-top">
-                  <Link to={song.user_id + '/' + song.artist} className="profile-info-small">{song.artist}</Link>
-                </div>
-                  <h2 className="profile-info" >{song.title}</h2>
-                </div>
-              </div>
-              <div className="thumbnail" style={divStyle}/>
+      <div className="song-show-header group">
+        <div className="song-show-button-and-info">
+          <div className="song-index-play big-play interactive">
+            <div className={ playButtonState  + ' big-play' } onClick={this.toggleStore} />
+          </div>
+          <div className="song-show-info">
+            <div className="info-top">
+              <Link to={song.user_id + '/' + song.artist} className="profile-info-small">{song.artist}</Link>
             </div>
+            <h2 className="profile-info" >{song.title}</h2>
+          </div>
+        </div>
+        <div className="thumbnail" style={divStyle}/>
+      </div>
     );
 
     var renderingCode = this.props.songShow ? songShow : regular;

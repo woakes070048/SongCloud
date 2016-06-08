@@ -9,3 +9,40 @@
 .song-show-button-and-info {
   display: flex;
 }
+
+.about-img {
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-content {
+  position: relative;
+  margin-top: 20px;
+}
+
+.about-main {
+  padding-right: 30px;
+  border-right: 1px solid #f2f2f2;
+  margin-right: 330px;
+}
+
+.about-left {
+  width: 120px;
+  float: left;
+}
+
+.about-left > a {
+  color: #333;
+  font-size: 14px;
+  margin: 6px 0 5px;
+  display: inline-block;
+  // position: absolute;
+}
+
+.about-right {
+  padding-left: 150px;
+  min-height: 350px;
+}
