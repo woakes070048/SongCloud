@@ -39,6 +39,7 @@ module.exports = React.createClass({
 
   render: function () {
     var divStyle;
+
     if (this.state.imageUrl) {
       divStyle = {
         backgroundImage: 'url(' + this.state.imageUrl + ')'
@@ -48,11 +49,12 @@ module.exports = React.createClass({
     var songsLinkState = '';
     var playlistsLinkState = '';
 
-    if (this.props.location.pathname === this.props.userId + '/' + this.props.username + 'playlists') {
+    if (this.props.location && this.props.location.pathname === '/' + this.props.params.userId + '/' + this.props.params.username + '/playlists') {
       playlistsLinkState = 'active';
     } else {
       songsLinkState = 'active';
     }
+    
     return (
       <div>
         <div className="profile-header group">

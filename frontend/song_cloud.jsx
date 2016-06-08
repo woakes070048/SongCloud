@@ -13,6 +13,7 @@ var Charts = require('./components/charts');
 var SongsIndex = require('./components/songs/index');
 var UserShow = require('./components/user_show');
 var UserSongs = require('./components/user_songs');
+var UserPlaylists = require('./components/user_playlists');
 var SongShow = require('./components/song_show');
 //Auth
 var SessionStore = require('./stores/session_store');
@@ -30,6 +31,7 @@ var Router = (
       <Route path=":userId/:username" component={ UserShow } >
         <IndexRoute component={ UserSongs } />
         <Route path="songs" component={ UserSongs } />
+        <Route path="playlists" component={ UserPlaylists } />
       </Route>
     </Route>
   </Router>

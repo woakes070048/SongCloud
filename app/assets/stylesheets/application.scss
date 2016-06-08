@@ -304,6 +304,10 @@ rbody.w-content {
   margin-right: 15px;
   width: 160px;
   height: 160px;
+  box-shadow: rgba(0,0,0,.1)0 0 0 1px inset;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .song-index-header {

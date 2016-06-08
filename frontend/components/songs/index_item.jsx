@@ -65,10 +65,14 @@ module.exports = React.createClass({
     var playButtonState = 'player-button-' + !this.state.playState;
     var songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
 
+    var divStyle = {
+      backgroundImage: 'url(' + song.image_url + ')'
+    };
+
     return (
       <li className="song-index-item">
-        <Link to={songLink} className="song-index-img">
-          <img src={song.image_url} />
+        <Link to={songLink}>
+          <div className="song-index-img" style={divStyle} />
         </Link>
 
         <div className="song-index-header">
