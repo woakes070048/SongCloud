@@ -138,6 +138,33 @@ nav {
   display: inline-block;
 }
 
+.user-profile:hover {
+  color: #fff;
+}
+
+.user-profile {
+  color: #ccc;
+  max-width: 149px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.profile-img {
+  height: 26px;
+  width: 26px;
+  float: left;
+  margin-right: 10px;
+}
+
+.user.group {
+  margin-right: 10px;
+  float: left;
+}
+
 .nav-logo {
   float: left;
   background: asset-url('sc_logo.png') no-repeat;
@@ -397,6 +424,10 @@ footer {
 
 .float-left {
   float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 .fake-player {

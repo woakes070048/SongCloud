@@ -11,15 +11,24 @@ var App = React.createClass({
 
   componentDidMount: function () {
     SessionStore.addListener(this.forceUpdate.bind(this));
+    SessionApiUtil.fetchCurrentUser();
   },
 
   greeting: function(){
     if (SessionStore.isUserLoggedIn()) {
+
       var curUser = SessionStore.currentUser();
+      var divStyle = {
+        backgroundImage: 'url(' + curUser.image_url + ')'
+      };
+
       return (
         <div className="nav-right">
-          <Link to={curUser.id + '/' + curUser.username} >{curUser.username}</Link>
-          <button className="sc-button-nav signup" onClick={ SessionApiUtil.logout } >Log Out</button>
+          <Link className="group user" to={curUser.id + '/' + curUser.username} >
+            <div className="profile-img thumbnail circular" style={divStyle} />
+            <div className="user-profile" >{curUser.username}</div>
+          </Link>
+          <button className="float-right sc-button-nav signup" onClick={ SessionApiUtil.logout } >Log Out</button>
         </div>
       );
     // } else if (["/login", "/signup"].indexOf(this.props.location.pathname) === -1) {
