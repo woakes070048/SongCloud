@@ -31,32 +31,37 @@ module.exports = React.createClass({
   setUser: function () {
     var user = UserStore.user();
     this.setState({
-      id: user.id,
+      userId: user.id,
       username: user.username,
       imageUrl: user.image_url
     });
   },
 
-  goToPage: function (link) {
-    this.context.router.push(link);
-  },
-
   render: function () {
-    var divImage;
+    var divStyle;
     if (this.state.imageUrl) {
-      divImage = {
+      divStyle = {
         backgroundImage: 'url(' + this.state.imageUrl + ')'
       };
     }
 
+    var songsLinkState = '';
+    var playlistsLinkState = '';
+
+    if (this.props.location.pathname === this.props.userId + '/' + this.props.username + 'playlists') {
+      playlistsLinkState = 'active';
+    } else {
+      songsLinkState = 'active';
+    }
     return (
       <div>
         <div className="profile-header group">
-          <div className="thumbnail circular" style={divImage}/>
+          <div className="thumbnail circular" style={divStyle}/>
           <h2 className="profile-info" >{this.state.username}</h2>
         </div>
-        <div className="user-menu">
-
+        <div className="user-menu group">
+          <Link to={this.props.params.userId + '/' + this.props.params.username + '/songs'} className={songsLinkState} >Songs</Link>
+          <Link to={this.props.params.userId + '/' + this.props.params.username + '/playlists'} className={playlistsLinkState} >Playlists</Link>
         </div>
         {this.props.children}
       </div>
