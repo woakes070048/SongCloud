@@ -33,7 +33,7 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div>
-        <SongIndexItem song={this.state.song} />
+        <SongIndexItem song={this.state.song} songShow={true}/>
       </div>
     );
   }

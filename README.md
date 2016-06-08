@@ -8,12 +8,12 @@
 
 SongCloud is a web application inspired by SoundCloud that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
-- [ ] New account creation, login, and guest/demo login
-- [ ] Smooth, bug-free navigation
-- [ ] Adequate seed data to demonstrate the site's features
+- [x] New account creation, login, and guest/demo login
+- [x] Smooth, bug-free navigation
+- [x] Adequate seed data to demonstrate the site's features
 - [ ] The minimally necessary features for an SoundCloud-inspired site: playlist creation and saving, playlist editing, song uploading, song editing and saving, tag and like songs
-- [ ] Hosting on Heroku
-- [ ] CSS styling that is satisfactorily visually appealing
+- [x] Hosting on Heroku
+- [x] CSS styling that is satisfactorily visually appealing
 - [ ] A production README, replacing this README
 
 ## Product Goals and Priorities
@@ -23,7 +23,7 @@ SongCloud will allow users to do the following:
 progress. Put an x between the brackets for a checkmark: [x] -->
 
 - [x] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
+- [x] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Create, view, edit, and delete playlists (MVP)
 - [ ] Upload, view, edit, and delete songs (MVP)
 - [ ] Tag songs with multiple tags (MVP)
@@ -62,33 +62,33 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 **Objective:** Songs can be created, read, and destroyed through
 the API.
 
-- [ ] create `Song` model
-- [ ] seed the database with a small amount of test data
+- [x] create `Song` model
+- [x] seed the database with a small amount of test data
 - [ ] CRUD API for songs (`SongsController`)
-- [ ] jBuilder views for songs
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [x] jBuilder views for songs
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (1.5 days)
 
 **Objective:** Songs can be uploaded, viewed, and destroyed with the
 user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
-- [ ] implement each song component, building out the flux loop as needed.
-  - [ ] `SongsIndex`
-  - [ ] `SongIndexItem`
+- [x] setup the flux loop with skeleton files
+- [x] setup React Router
+- [x] implement each song component, building out the flux loop as needed.
+  - [x] `SongsIndex`
+  - [x] `SongIndexItem`
   - [ ] `SongForm`
 
 ### Phase 4: Start Styling (0.5 days)
 
 **Objective:** Existing pages (including singup/signin) will look good.
 
-- [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
+- [x] create a basic style guide
+- [x] position elements on the page
+- [x] add basic colors & styles
 
 ### Phase 5: Playlists (1 day)
 
@@ -112,15 +112,7 @@ user interface.
   - [ ] searching songs/playlists by tag
 - [ ] Style new elements
 
-### Phase 7: Allow Complex Styling in Songs (0.5 days)
-
-**objective:** Enable complex styling of songs.
-
-- [ ] Integrate `react-quill` (based on Quill.js).
-- [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Style the new Quill elements.
-
-### Phase 8: Styling Cleanup and Seeding (1 day)
+### Phase 7: Styling Cleanup and Seeding (1 day)
 
 **objective:** Make the site feel more cohesive and awesome.
 

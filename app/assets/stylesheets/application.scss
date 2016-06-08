@@ -47,7 +47,7 @@ textarea:focus, button:focus {
 }
 
 html, body {
-  height: 100%;
+  height: auto;
 }
 
 #content, .body, .user-body {
@@ -309,6 +309,11 @@ rbody.w-content {
   // background: yellow;
 }
 
+.song-index-list div:last-child li {
+  // margin-bottom: 0px;
+  // footer image drags right border down!
+}
+
 .song-index-img {
   margin-right: 15px;
   width: 160px;
@@ -361,6 +366,10 @@ rbody.w-content {
   display: block;
   color: #999;
   font-size: 12px;
+}
+
+.song-index-artist:hover {
+  color: #000;
 }
 
 .song-index-title {
