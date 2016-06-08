@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :songs, dependent: :destroy
 
-  has_attached_file :image, default_url: 'default_profile_img'
+  has_attached_file :image, default_url: 'default_profile_img.jpg'
   # validates_attachment(
   #   :image, presence: true,
   #   content_type: { content_type: /^image\/(png|gif|jpeg|jpg)/ },

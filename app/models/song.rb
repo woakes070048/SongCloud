@@ -31,6 +31,9 @@ class Song < ActiveRecord::Base
     foreign_key: :user_id
   )
 
+  has_many :playlistings, dependent: :destroy
+  has_many :playlists, through: :playlistings
+
   private
 
   def ensure_image_url
