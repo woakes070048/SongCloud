@@ -43,13 +43,22 @@ module.exports = {
     });
   },
 
-  updateSong: function (data) {
+  updateSong: function (formData, callback, id) {
     $.ajax({
-      url: "api/songs/" + data.id,
+      url: "api/songs/" + id,
       type: "PATCH",
-      data: { song: { title: data.title, body: data.body } },
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      data: formData,
       success: function (song) {
         ServerActions.receiveSong(song);
+        callback(song);
+      },
+      error: function (xhr) {
+        console.log('SongApiUtil#updateSong error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("edit", errors);
       }
     });
   },

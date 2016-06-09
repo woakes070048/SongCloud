@@ -21,7 +21,7 @@ class Api::SongsController < ApplicationController
     if @song.update(song_params)
       render :show
     else
-      render json: @song.errors.full_messages, status: 422
+      render json: @song.errors, status: 422
     end
   end
 
@@ -36,7 +36,7 @@ class Api::SongsController < ApplicationController
     if @song.destroy
       render :show
     else
-      render json: @song.errors.full_messages, status: 422
+      render json: @song.errors, status: 422
     end
   end
 

@@ -3,17 +3,21 @@ var Link = require('react-router').Link;
 var SessionStore = require('./../../stores/session_store');
 var ErrorStore = require('./../../stores/error_store');
 var SongApiUtil = require('./../../util/song_api_util');
-
+var SongStore = require('./../../stores/song_store');
 
 var SongForm = React.createClass({
 
   getInitialState: function () {
+    var currentId = SessionStore.currentUser() ? SessionStore.currentUser().id : null;
+    var potSong = SongStore.find(this.props.params.songId);
+    potSong = potSong ? potSong : {};
+    var potDescription = potSong.description ? potSong.description : "";
     return {
-      title: "",
-      description: "",
-      songFile: null,
+      title: potSong.title ? potSong.title : "",
+      description: potSong.description ? potSong.description : "",
 			imageFile: null,
-			imageUrl: null
+			imageUrl: potSong.image_url,
+      currentUserId: currentId
     };
   },
 
@@ -21,8 +25,18 @@ var SongForm = React.createClass({
     router: React.PropTypes.object.isRequired
   },
 
+  isCurrentUser: function () {
+    return this.state.currentUserId === this.props.params.userId;
+  },
+
   componentDidMount: function () {
     this.errorListener = ErrorStore.addListener(this.forceUpdate.bind(this));
+    this.sessionListener = SessionStore.addListener(this.updateCurrentUser);
+  },
+
+  updateCurrentUser: function () {
+    var currentUser = SessionStore.currentUser();
+    this.setState({currentUserId: currentUser ? currentUser.id : null});
   },
 
   componentWillUnmount: function () {
@@ -33,18 +47,24 @@ var SongForm = React.createClass({
 		e.preventDefault();
 		var formData;
 		formData = new FormData();
-		formData.append("song[user_id]", SessionStore.currentUser().id);
 		formData.append("song[title]", this.state.title);
-		if (this.state.songFile) {
-			formData.append("song[file]", this.state.songFile);
-		}
 		if (this.state.imageFile) {
 			formData.append("song[image]", this.state.imageFile);
 		}
-		if (this.state.description) {
-			formData.append("song[description]", this.state.description);
-		}
-    SongApiUtil.createSong(formData, this.redirect);
+		if (!this.state.description) {
+			formData.append("song[description]", "");
+		} else {
+      formData.append("song[description]", this.state.description);
+    }
+    if (this.formType() === "upload") {
+      formData.append("song[user_id]", SessionStore.currentUser().id);
+      if (this.state.songFile) {
+        formData.append("song[file]", this.state.songFile);
+      }
+      SongApiUtil.createSong(formData, this.redirect);
+    } else {
+      SongApiUtil.updateSong(formData, this.redirect, this.props.params.songId);
+    }
 	},
 
   redirect: function (song) {
@@ -64,7 +84,7 @@ var SongForm = React.createClass({
   },
 
   formType: function () {
-    return this.props.location.pathname.slice(1);
+    return this.props.location.pathname.split("/").slice(-1)[0];
   },
 
   titleChange: function (event) {
@@ -114,6 +134,15 @@ var SongForm = React.createClass({
   },
 
 	render: function () {
+    var submitText;
+    var songFileButton;
+    if (this.formType() === "upload") {
+      submitText = 'Upload Song';
+      songFileButton = <input type="file" className="user-img" onChange={this.updateSong} accept='audio/mpeg, audio/x-mpeg, audio/mp3, audio/x-mp3, audio/mpeg3, audio/x-mpeg3, audio/mpg, audio/x-mpg, audio/x-mpegaudio'/>;
+    } else {
+      submitText = 'Update Song';
+      songFileButton = <div className="file-placeholder" />;
+    }
 
     var divStyle = {
       backgroundImage: 'url(' + this.state.imageUrl + ')'
@@ -128,9 +157,9 @@ var SongForm = React.createClass({
             <div className="errors" >{ this.fieldErrors("title") }</div>
 
             <input className="sc-input margin-bottom-10" type="text" value={this.state.description} onChange={this.descriptionChange} placeholder="Enter Description" />
-            <input type="file" className="user-img" onChange={this.updateSong} text="Choose audio file"accept='audio/mpeg, audio/x-mpeg, audio/mp3, audio/x-mp3, audio/mpeg3, audio/x-mpeg3, audio/mpg, audio/x-mpg, audio/x-mpegaudio'/>
+            {songFileButton}
             <div className="errors" >{ this.fieldErrors("file") }</div>
-            <input className="sc-button" type="submit" value='Upload' />
+            <input className="sc-button" type="submit" value={submitText} />
             <input type="file" className="user-img" onChange={this.updateImage} accept="image/jpeg, image/png, image/gif"/>
             <div className="img-div thumbnail" style={divStyle}/>
             <div className="errors" >{ this.fieldErrors("image") }</div>

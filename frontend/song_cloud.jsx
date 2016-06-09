@@ -29,6 +29,7 @@ var Router = (
       <Route path="login" component={ LoginForm } />
       <Route path="signup" component={ LoginForm } />
       <Route path="upload" component={ SongForm } onEnter={ _ensureLoggedIn }/>
+      <Route path=":userId/:username/:songId/:songTitle/edit" component={ SongForm } onEnter={ _ensureLoggedIn }/>
       <Route path=":userId/:username/:songId/:songTitle" component={ SongShow } />
       <Route path=":userId/:username" component={ UserShow } >
         <IndexRoute component={ UserSongs } />

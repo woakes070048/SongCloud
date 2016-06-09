@@ -7,8 +7,7 @@ var ClientActions = require('../actions/client_actions');
 module.exports = React.createClass({
   getInitialState: function () {
     var potSong = SongStore.find(this.props.params.songId);
-    song = potSong ? potSong : {};
-    return({ song: song  });
+    return({ song: potSong ? potSong : {} });
   },
 
   componentDidMount: function () {

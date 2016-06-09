@@ -16,12 +16,14 @@ module.exports = React.createClass({
     return({ playState: init, currentUserId: currentId });
   },
 
-  // editSong: function (event) {
-  //   event.preventDefault();
-  //   var url = "/songs/" + this.props.song.id.toString() + "/edit";
-  //   this.context.router.push(url);
-  // },
-  //
+  editSong: function (event) {
+    if (this.isCurrentUser()) {
+      event.preventDefault();
+      var url = this.props.song.user_id + '/' + this.props.song.artist + '/' + this.props.song.id + '/' + this.props.song.title + "/edit";
+      this.context.router.push(url);
+    }
+  },
+
   deleteSong: function (event) {
     if (this.isCurrentUser()) {
       event.preventDefault();
@@ -90,7 +92,7 @@ module.exports = React.createClass({
     if (this.isCurrentUser()) {
       songActions = (
         <div>
-          <button className="interactive song-button" title="Edit">Edit</button>
+          <button className="interactive song-button" onClick={this.editSong} title="Edit">Edit</button>
           <button className="interactive song-button" onClick={this.deleteSong} title="Delete">Delete</button>
         </div>
       );
