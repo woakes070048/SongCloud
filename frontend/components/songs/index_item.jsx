@@ -3,6 +3,7 @@ var Link = require('react-router').Link;
 var PlayerFooterStore = require('../../stores/player_footer_store');
 var PlayerFooterActions = require('../../actions/player_footer_actions');
 var ClientActions = require('../../actions/client_actions');
+var SessionStore = require('../../stores/session_store');
 
 module.exports = React.createClass({
   contextTypes: {
@@ -11,7 +12,8 @@ module.exports = React.createClass({
 
   getInitialState: function () {
     var init = (PlayerFooterStore.song() && PlayerFooterStore.song().id === this.props.song.id) ? PlayerFooterStore.playState() : false;
-    return({ playState: init });
+    var currentId = SessionStore.currentUser() ? SessionStore.currentUser().id : null;
+    return({ playState: init, currentUserId: currentId });
   },
 
   // editSong: function (event) {
@@ -21,16 +23,29 @@ module.exports = React.createClass({
   // },
   //
   deleteSong: function (event) {
-    event.preventDefault();
-    ClientActions.deleteSong(this.props.song.id);
+    if (this.isCurrentUser()) {
+      event.preventDefault();
+      ClientActions.deleteSong(this.props.song.id);
+    }
+  },
+
+  isCurrentUser: function () {
+    return this.state.currentUserId === this.props.song.user_id;
   },
 
   componentDidMount: function () {
     this.playerFooterListener = PlayerFooterStore.addListener(this.toggleButtonState);
+    this.sessionListener = SessionStore.addListener(this.updateCurrentUser);
+  },
+
+  updateCurrentUser: function () {
+    var currentUser = SessionStore.currentUser();
+    this.setState({currentUserId: currentUser ? currentUser.id : null});
   },
 
   componentWillUnmount: function () {
     this.playerFooterListener.remove();
+    this.sessionListener.remove();
   },
 
   toggleButtonState: function () {
@@ -70,6 +85,17 @@ module.exports = React.createClass({
       backgroundImage: 'url(' + song.image_url + ')'
     };
 
+    var songActions;
+
+    if (this.isCurrentUser()) {
+      songActions = (
+        <div>
+          <button className="interactive song-button" title="Edit">Edit</button>
+          <button className="interactive song-button" onClick={this.deleteSong} title="Delete">Delete</button>
+        </div>
+      );
+    }
+
     var regular = (
       <li className="song-index-item">
         <Link to={songLink}>
@@ -90,8 +116,7 @@ module.exports = React.createClass({
 
           </div>
           <div className="song-actions">
-            <button className="interactive song-button" title="Edit">Edit</button>
-            <button className="interactive song-button" onClick={this.deleteSong} title="Delete">Delete</button>
+            {songActions}
           </div>
         </div>
       </li>
