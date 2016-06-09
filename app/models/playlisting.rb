@@ -1,4 +1,4 @@
-class Playlistings < ActiveRecord::Base
+class Playlisting < ActiveRecord::Base
   validates :song_id, :playlist_id, presence: true
   validates :song_id, uniqueness: { scope: :playlist_id }
 

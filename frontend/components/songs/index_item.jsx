@@ -2,6 +2,7 @@ var React = require('react');
 var Link = require('react-router').Link;
 var PlayerFooterStore = require('../../stores/player_footer_store');
 var PlayerFooterActions = require('../../actions/player_footer_actions');
+var ClientActions = require('../../actions/client_actions');
 
 module.exports = React.createClass({
   contextTypes: {
@@ -19,10 +20,10 @@ module.exports = React.createClass({
   //   this.context.router.push(url);
   // },
   //
-  // deleteSong: function (event) {
-  //   event.preventDefault();
-  //   ClientActions.deleteSong(this.props.song.id);
-  // },
+  deleteSong: function (event) {
+    event.preventDefault();
+    ClientActions.deleteSong(this.props.song.id);
+  },
 
   componentDidMount: function () {
     this.playerFooterListener = PlayerFooterStore.addListener(this.toggleButtonState);
@@ -90,7 +91,7 @@ module.exports = React.createClass({
           </div>
           <div className="song-actions">
             <button className="interactive song-button" title="Edit">Edit</button>
-            <button className="interactive song-button" title="Delete">Delete</button>
+            <button className="interactive song-button" onClick={this.deleteSong} title="Delete">Delete</button>
           </div>
         </div>
       </li>

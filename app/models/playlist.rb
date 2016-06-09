@@ -1,4 +1,4 @@
-class Song < ActiveRecord::Base
+class Playlist < ActiveRecord::Base
   validates :title, :user_id, presence: true
   validates :private, inclusion:{ in: [true, false], message: "Please specify if it is private/public" }
   validates :title, presence: true

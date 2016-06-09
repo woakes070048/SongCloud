@@ -23,7 +23,7 @@ module.exports = {
     });
   },
 
-  createSong: function (formData) {
+  createSong: function (formData, callback) {
     $.ajax({
       url: "api/songs",
       type: "POST",
@@ -33,6 +33,7 @@ module.exports = {
       data: formData,
       success: function (song) {
         ServerActions.receiveSong(song);
+        callback(song);
       },
       error: function (xhr) {
         console.log('SongApiUtil#createSong error');

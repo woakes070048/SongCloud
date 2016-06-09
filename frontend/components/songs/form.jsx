@@ -44,8 +44,13 @@ var SongForm = React.createClass({
 		if (this.state.description) {
 			formData.append("song[description]", this.state.description);
 		}
-    SongApiUtil.createSong(formData);
+    SongApiUtil.createSong(formData, this.redirect);
 	},
+
+  redirect: function (song) {
+    var url = '/' + song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
+    this.context.router.push(url);
+  },
 
   fieldErrors: function (field) {
     var errors = ErrorStore.formErrors(this.formType());
