@@ -85,6 +85,13 @@ module.exports = React.createClass({
               <Link to={songLink} className="song-index-title">{song.title}</Link>
             </div>
           </div>
+          <div className="progress-bar">
+
+          </div>
+          <div className="song-actions">
+            <button className="interactive song-button" title="Edit">Edit</button>
+            <button className="interactive song-button" title="Delete">Delete</button>
+          </div>
         </div>
       </li>
     );

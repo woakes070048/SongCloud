@@ -400,13 +400,15 @@ rbody.w-content {
 .song-index-header {
   // margin-bottom: 6px;
   display: block;
-  padding-top: 7px;
+  // padding-top: 7px;
   flex: 1;
   min-height: 43px;
 }
 
 .song-index-button-and-info {
   display: flex;
+  padding-top: 7px;
+  margin-bottom: 6px;
 }
 
 .song-index-play {
@@ -451,8 +453,27 @@ rbody.w-content {
   font-size: 15px;
 }
 
+.song-index .progress-bar {
+  height: 60px;
+}
+
+.song-index .song-actions {
+  margin-top: 10px;
+  min-height: 30px;
+}
+
 .interactive:hover {
   cursor: pointer;
+}
+
+.song-button {
+  height: 22px;
+  min-width: 25px;
+  font-size: 11px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 2px 6px 3px 6px;
+  margin-right: 5px;
 }
 
 footer {
