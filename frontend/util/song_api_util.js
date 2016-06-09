@@ -1,4 +1,6 @@
 var ServerActions = require('../actions/server_actions');
+var ErrorActions = require('../actions/error_actions');
+
 
 module.exports = {
   fetchSongs: function (filter) {
@@ -21,13 +23,21 @@ module.exports = {
     });
   },
 
-  createSong: function (data) {
+  createSong: function (formData) {
     $.ajax({
       url: "api/songs",
       type: "POST",
-      data: { song: data },
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      data: formData,
       success: function (song) {
         ServerActions.receiveSong(song);
+      },
+      error: function (xhr) {
+        console.log('SongApiUtil#createSong error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("upload", errors);
       }
     });
   },

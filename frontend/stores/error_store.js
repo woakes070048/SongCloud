@@ -10,15 +10,15 @@ ErrorStore.formErrors = function (form) {
   if (form !== _form) {
     return {};
   }
-  
+
   var result = {};
-  
+
   var errors;
   Object.keys(_errors).forEach(function (field) {
     errors = _errors[field];
     result[field] = errors.slice();
   });
-  
+
   return result;
 };
 

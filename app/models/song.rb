@@ -1,8 +1,8 @@
 class Song < ActiveRecord::Base
-  validates :title, :user_id, presence: true
+  validates :title, :user_id, :file, presence: true
   validates :private, inclusion:{ in: [true, false], message: "Please specify if it is private/public" }
 
-  before_validation :ensure_image_url
+  # before_validation :ensure_image_url
 
   has_attached_file :file
   validates_attachment_content_type(
@@ -21,7 +21,10 @@ class Song < ActiveRecord::Base
   )
   validates_attachment_size :file, less_than: 10.megabyte
 
-  has_attached_file :image
+  # has_attached_file :image, default_url: current_user.image_file_name
+  # has_attached_file :image, default_url: self.artist.image_url
+  # has_attached_file :image
+  has_attached_file :image, default_url: 'default_profile_img.jpg'
   validates_attachment_content_type :image, content_type: /^image\/(png|gif|jpeg)/
   validates_attachment_size :image, less_than: 2.megabyte
 
@@ -37,6 +40,6 @@ class Song < ActiveRecord::Base
   private
 
   def ensure_image_url
-    self.image ||= self.artist.image
+    self.image ||= current_user.image
   end
 end
