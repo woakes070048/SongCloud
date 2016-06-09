@@ -24,6 +24,7 @@ var App = React.createClass({
 
       return (
         <div className="nav-right">
+          <a className="upload" href='#/upload'>Upload</a>
           <Link className="group user" to={curUser.id + '/' + curUser.username} >
             <div className="profile-img thumbnail circular" style={divStyle} />
             <div className="user-profile" >{curUser.username}</div>

@@ -132,37 +132,45 @@ nav {
   padding: 9px 10px 10px 10px;
   float: right;
   color: #999;
+  display: table;
+  vertical-align: middle;
 }
 
-.nav-right > * {
-  display: inline-block;
+.upload {
+  display: table-cell;
+  padding-right: 15px;
 }
 
-.user-profile:hover {
+.upload:hover {
+  color: #fff;
+}
+
+.group.user:hover .user-profile {
   color: #fff;
 }
 
 .user-profile {
-  color: #ccc;
+  color: #999;
   max-width: 149px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: normal;
-  display: inline-block;
-  vertical-align: middle;
+  display: table-cell;
 }
 
 .profile-img {
   height: 26px;
   width: 26px;
   float: left;
+  display: table;
   margin-right: 10px;
 }
 
 .user.group {
   margin-right: 10px;
   float: left;
+  display: table;
 }
 
 .nav-logo {
