@@ -126,10 +126,13 @@ var LoginForm = React.createClass({
     } else {
       navLink = <Link to="/login">log in instead</Link>;
 			submitText = "Sign Up";
+			var divStyle = {
+				backgroundImage: 'url(' + this.state.imageUrl + ')'
+			};
 			updateFile = (
 				<div>
-				<input type="file" className="user-img" onChange={this.updateFile} accept="image/jpeg, image/png, image/gif"/>
-				<img src={this.state.imageUrl} />
+					<input type="file" className="user-img" onChange={this.updateFile} accept="image/jpeg, image/png, image/gif"/>
+					<div className="img-div thumbnail" style={divStyle}/>
 				</div>
 			);
     }
@@ -140,20 +143,16 @@ var LoginForm = React.createClass({
 					<form className="signin-form" onSubmit={this.handleSubmit}>
 		        Please { this.formType() } or { navLink }
 
-						{ this.fieldErrors("image") }
-		        <br />
 						<input className="sc-input" type="text" value={this.state.username} onChange={this.usernameChange} placeholder="Enter Username" />
-						{ this.fieldErrors("username") }
+						<div className="errors" >{ this.fieldErrors("username") }</div>
 
-		        <br />
 						<input className="sc-input" type="password" value={this.state.password} onChange={this.passwordChange} placeholder="Enter Password" />
-						{ this.fieldErrors("password") }
-
-		        <br />
-						{ this.fieldErrors("base") }
-						{updateFile}
-						{guestUser}
+						<div className="errors" >{ this.fieldErrors("password") }</div>
+						<div className="errors" >{ this.fieldErrors("base") }</div>
 						<input className="sc-button" type="submit" value={submitText} />
+						{guestUser}
+						{updateFile}
+						<div className="errors" >{ this.fieldErrors("image") }</div>
 					</form>
 				</div>
 			</div>

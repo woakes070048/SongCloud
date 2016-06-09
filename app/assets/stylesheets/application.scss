@@ -195,7 +195,7 @@ nav {
   border: 1px solid #ccc;
   font-size: 18px;
   line-height: 24px;
-  margin: 10px 0;
+  margin-top: 10px;
   padding: 7px 8px;
   border-radius: 5px
 }
@@ -206,7 +206,7 @@ nav {
   border: 1px solid #f50;
   font-size: 16px;
   line-height: 24px;
-  margin: 10px 0;
+  margin-bottom: 10px;
   padding: 7px 8px;
   border-radius: 5px;
   background: #f50;
@@ -297,9 +297,10 @@ rbody.w-content {
 .centered {
   position: relative;
   display: block;
-  top: 145px;
+  top: 30px;
   width: 350px;
   margin: auto;
+  padding-bottom: 50px;
 }
 //
 // .centered {
@@ -313,7 +314,7 @@ rbody.w-content {
 .signin-div {
   top: 30px;
   width: 400px;
-  height: 500px;
+  min-height: 500px;
   border: 1px solid #e5e5e5;
   position: relative;
   margin: 0 auto;
@@ -329,6 +330,38 @@ rbody.w-content {
   font-size: 16px;
   width: 350px;
 }
+
+.signin-form li {
+  font-size: 14px;
+  color: red;
+  display: block;
+}
+
+.signin-form .errors {
+  margin-top: 2px;
+  height: 16px;
+}
+
+.signin-form a {
+  color: blue;
+}
+
+// .signin-form img {
+//   max-height: 200px;
+//   width: auto;
+//   margin: auto;
+//   margin-top: 10px;
+// }
+
+.img-div {
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+
 
 .song-index {
   min-height: 500px;
