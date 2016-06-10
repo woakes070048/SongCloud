@@ -16,7 +16,7 @@ class Api::SongsController < ApplicationController
 	end
 
   def update
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
 
     if @song.update(song_params)
       render :show
@@ -31,7 +31,7 @@ class Api::SongsController < ApplicationController
 	end
 
   def destroy
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
 
     if @song.destroy
       render :show

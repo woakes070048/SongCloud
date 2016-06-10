@@ -156,7 +156,7 @@ var SongForm = React.createClass({
             <input className="sc-input" type="text" value={this.state.title} onChange={this.titleChange} placeholder="Enter Title" />
             <div className="errors" >{ this.fieldErrors("title") }</div>
 
-            <input className="sc-input margin-bottom-10" type="text" value={this.state.description} onChange={this.descriptionChange} placeholder="Enter Description" />
+            <textarea className="sc-input margin-bottom-10" type="text" value={this.state.description} onChange={this.descriptionChange} placeholder="Enter Description" />
             {songFileButton}
             <div className="errors" >{ this.fieldErrors("file") }</div>
             <input className="sc-button" type="submit" value={submitText} />

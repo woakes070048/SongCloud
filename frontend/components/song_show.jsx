@@ -50,7 +50,7 @@ module.exports = React.createClass({
               <Link to={song.user_id + '/' + song.artist} >{song.artist}</Link>
             </div>
             <div className="about-right">
-
+              {song.description}
             </div>
           </div>
 

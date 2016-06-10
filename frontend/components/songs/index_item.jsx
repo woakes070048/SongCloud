@@ -135,6 +135,9 @@ module.exports = React.createClass({
               <Link to={song.user_id + '/' + song.artist} className="profile-info-small">{song.artist}</Link>
             </div>
             <h2 className="profile-info" >{song.title}</h2>
+            <div className="song-actions">
+              {songActions}
+            </div>
           </div>
         </div>
         <div className="thumbnail" style={divStyle}/>
