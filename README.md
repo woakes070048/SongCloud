@@ -1,126 +1,129 @@
 # SongCloud
 
-[Heroku link][heroku]
+[SongCloud Live][heroku]
 
 [heroku]: http://songcloud.herokuapp.com
 
-## Minimum Viable Product
+SongCloud is a clone of SoundCloud. It utilizes Ruby on Rails on the backend and React/Flux on the frontend.
 
-SongCloud is a web application inspired by SoundCloud that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+## Features and Implentation
 
-- [x] New account creation, login, and guest/demo login
-- [x] Smooth, bug-free navigation
-- [x] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for an SoundCloud-inspired site: playlist creation and saving, playlist editing, song uploading, song editing and saving, tag and like songs
-- [x] Hosting on Heroku
-- [x] CSS styling that is satisfactorily visually appealing
-- [ ] A production README, replacing this README
+SongCloud allows a user to play songs continuously while allowing them to navigate through other parts of the website. This is possible because it utilizes React/Flux to make it a single page app.
 
-## Product Goals and Priorities
-SongCloud will allow users to do the following:
+- This app allows users to upload, edit, delete, and view/play songs.
+- Stores information about songs and users in Postgres database.
+- All image/audio content is uploaded/accessed using Amazon Web Services.
+- The Rails backend properly fetches/stores json data into the database.
 
-<!-- This is a Markdown checklist. Use it to keep track of your
-progress. Put an x between the brackets for a checkmark: [x] -->
+### Song List Item
 
-- [x] Create an account (MVP)
-- [x] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Create, view, edit, and delete playlists (MVP)
-- [ ] Upload, view, edit, and delete songs (MVP)
-- [ ] Tag songs with multiple tags (MVP)
-- [ ] Tag playlists with multiple tags (MVP)
-- [ ] Allow user to follow other users (expected feature, but not MVP)
-- [ ] Allow user to like and comment on songs (expected feature, but not MVP)
-- [ ] Allow user to like playlists (expected feature, but not MVP)
+A song list item corresponds to a song. It holds all the song's info and includes buttons to navigate/edit/delete. Multiple items can be shown on one page and the same item can be shown on different pages. If a specific song is playing, everywhere it is shown has to be updated (especially important ).
 
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Flux Cycles][flux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
+#### Implementation
 
-[views]: ./docs/views.md
-[components]: ./docs/components.md
-[flux-cycles]: ./docs/flux-cycles.md
-[api-endpoints]: ./docs/api-endpoints.md
-[schema]: ./docs/schema.md
+##### `toggleButtonState`
 
-## Implementation Timeline
+Compares all the index items anywhere in the app to the song item in the player in the footer. If it is the same song, it will render to the same play/pause button state; if it's not the same song, it will render the pause button image.
 
-### Phase 1: Backend setup and User Authentication (0.5 days)
+```javascript
+toggleButtonState: function () {
+  if (PlayerFooterStore.song().id === this.props.song.id) {
+    this.setState({playState: PlayerFooterStore.playState()});
+  } else if (this.state.playState === true) {
+    this.setState({playState: false});
+  }
+},
+```
 
-**Objective:** Functioning rails project with Authentication
+##### `toggleStore`
 
-- [x] create new project
-- [x] create `User` model
-- [x] authentication
-- [x] user signup/signin pages
-- [x] blank landing page after signin
+When the button in the index item is pressed, it updates the "song store" that holds information of the currently playing song.
 
-### Phase 2: Songs Model, API, and basic APIUtil (1.5 days)
+```javascript
+toggleStore: function () {
+  PlayerFooterActions.toggleButtonState({
+    song: this.props.song,
+    playState: !this.state.playState
+  });
+},
+```
 
-**Objective:** Songs can be created, read, and destroyed through
-the API.
+### Player
 
-- [x] create `Song` model
-- [x] seed the database with a small amount of test data
-- [ ] CRUD API for songs (`SongsController`)
-- [x] jBuilder views for songs
-- [x] setup Webpack & Flux scaffold
-- [x] setup `APIUtil` to interact with the API
-- [x] test out API interaction in the console.
+The Player (in the footer) has the controls for the currently playing song. When it is pressed it should change the play/pause button state of the song everywhere it is shown.
 
-### Phase 3: Flux Architecture and Router (1.5 days)
+#### Implementation
 
-**Objective:** Songs can be uploaded, viewed, and destroyed with the
-user interface.
+##### `togglePlayerState`
 
-- [x] setup the flux loop with skeleton files
-- [x] setup React Router
-- [x] implement each song component, building out the flux loop as needed.
-  - [x] `SongsIndex`
-  - [x] `SongIndexItem`
-  - [ ] `SongForm`
+The Player gets information from the "song store" about the currently playing song. It then sends invokes the action to play the actual song.
 
-### Phase 4: Start Styling (0.5 days)
+```javascript
+togglePlayerState: function () {
+  var songParams = PlayerFooterStore.params();
+  this.setState(songParams);
+  PlayerFooterActions.togglePlayerState(songParams);
+},
+```
 
-**Objective:** Existing pages (including singup/signin) will look good.
+##### `toggleStore`
 
-- [x] create a basic style guide
-- [x] position elements on the page
-- [x] add basic colors & styles
+Similar to the index item, when the button in the player is pressed, it updates the "song store" that holds information of the currently playing song.
 
-### Phase 5: Playlists (1 day)
+```javascript
+toggleStore: function () {
+  PlayerFooterActions.toggleButtonState({
+    song: this.props.song,
+    playState: !this.state.playState
+  });
+},
+```
 
-**Objective:** Songs belong to Playlists, and can be viewed by playlist. Playlists can be created, viewed, and destroyed with the user interface.
+## Pages
 
-- [ ] create `Playlist` model
-- build out API, Flux loop, and components for:
-  - [ ] Playlist CRUD
-  - [ ] viewing songs by playlist
-- Use CSS to style new views
+### Index Page
 
-### Phase 6: Tags (1.5 days)
+Displays all songs by all users. In the future I want to implement displaying only songs users follow or like and displaying top played songs.
 
-**Objective:** Songs and Playlists can be tagged with multiple tags, and tags are searchable.
+#### Screenshot
+![songcloud-index]
 
-- [ ] create `Tag` model and join table
-- build out API, Flux loop, and components for:
-  - [ ] fetching tags for song/playlist
-  - [ ] adding tags to song/playlist
-  - [ ] creating tags while adding to songs/playslists
-  - [ ] searching songs/playlists by tag
-- [ ] Style new elements
+### Artist Page
 
-### Phase 7: Styling Cleanup and Seeding (1 day)
+Displays all songs by a user.
 
-**objective:** Make the site feel more cohesive and awesome.
+#### Screenshot
+![songcloud-artist]
 
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add modals, transitions, and other styling flourishes.
+### Song Page
 
-### Bonus Features (TBD)
-- [ ] Song comments in progress bar
-- [ ] Pagination / infinite scroll for Songs Index
-- [ ] Multiple sessions
+Displays a song and its information. In the future I plan on adding comments.
+
+#### Screenshot
+![songcloud-song]
+
+### Signin/Signup Page
+
+Allows user to sign in with Google or create an account by entering username and password.
+
+#### Screenshots
+![songcloud-signup]
+
+![songcloud-signin]
+
+### Upload/Update Page
+
+Allows user to upload/update a song. A song has a title, description, and image/song (which they upload).
+
+#### Screenshots
+![songcloud-upload]
+
+![songcloud-update]
+
+[songcloud-index]: ./docs/screenshots/SongCloud.png
+[songcloud-artist]: ./docs/screenshots/SongCloud-artist.png
+[songcloud-song]: ./docs/screenshots/SongCloud-song.png
+[songcloud-signin]: ./docs/screenshots/SongCloud-signin.png
+[songcloud-signup]: ./docs/screenshots/SongCloud-signup.png
+[songcloud-upload]: ./docs/screenshots/SongCloud-upload.png
+[songcloud-update]: ./docs/screenshots/SongCloud-update.png
