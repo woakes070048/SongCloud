@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608174332) do
+ActiveRecord::Schema.define(version: 20160610143048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "name"
+    t.string   "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "playlistings", force: :cascade do |t|
     t.integer  "song_id",     null: false
@@ -67,6 +79,8 @@ ActiveRecord::Schema.define(version: 20160608174332) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "name"
+    t.string   "google_uid"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

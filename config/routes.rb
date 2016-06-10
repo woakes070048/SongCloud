@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   end
 
   root "static_pages#root"
+
+  get '/auth/:provider/callback', to: 'api/sessions#auth_create'
 end

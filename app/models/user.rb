@@ -30,6 +30,18 @@ class User < ActiveRecord::Base
 		user.password_is?(password) ? user : nil
 	end
 
+  def self.find_or_create_by_auth_hash(auth_hash)
+    user = User.find_by(google_uid: auth_hash[:uid])
+    if !user
+      user = User.create!(
+      google_uid: auth_hash[:uid],
+      username: auth_hash[:info][:name],
+      password_digest: auth_hash[:credentials][:token]
+      )
+    end
+    user
+  end
+
 	def password_is?(password)
 		BCrypt::Password.new(self.password_digest).is_password?(password)
 	end

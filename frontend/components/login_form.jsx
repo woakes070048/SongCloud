@@ -141,6 +141,7 @@ var LoginForm = React.createClass({
 			<div className="signin-div">
 				<div className="centered">
 					<form className="signin-form" onSubmit={this.handleSubmit}>
+						<a className="sc-google" href="/auth/google_oauth2" text="Sign In With Google"></a>
 		        Please { this.formType() } or { navLink }
 
 						<input className="sc-input" type="text" value={this.state.username} onChange={this.usernameChange} placeholder="Enter Username" />

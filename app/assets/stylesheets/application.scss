@@ -218,6 +218,14 @@ nav {
   text-align: center;
 }
 
+.sc-google {
+  width: 100%;
+  height: 100px;
+  display: block;
+  background: asset-url('google_signin.png') no-repeat;
+  background-size: contain;
+}
+
 .sc-button-nav {
   height: 26px;
   margin: 0;
