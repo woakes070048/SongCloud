@@ -51,7 +51,7 @@ module.exports = React.createClass({
   },
 
   toggleButtonState: function () {
-    if (PlayerFooterStore.song() === this.props.song) {
+    if (PlayerFooterStore.song().id === this.props.song.id) {
       this.setState({playState: PlayerFooterStore.playState()});
     } else if (this.state.playState === true) {
       this.setState({playState: false});
