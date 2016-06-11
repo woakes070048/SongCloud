@@ -48,8 +48,8 @@ module.exports = React.createClass({
 
     var songsLinkState = '';
     var playlistsLinkState = '';
-
-    if (this.props.location && this.props.location.pathname === '/' + this.props.params.userId + '/' + this.props.params.username + '/playlists') {
+    var userList = this.props.location && this.props.location.pathname.split("/").slice(-1)[0];
+    if (userList === 'playlists') {
       playlistsLinkState = 'active';
     } else {
       songsLinkState = 'active';

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   #   content_type: { content_type: /^image\/(png|gif|jpeg|jpg)/ },
   #   size: { in: 0..2000.kilobytes }
   # )
-  validates_attachment_content_type :image, content_type: /^image\/(png|gif|jpeg)/
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_attachment_size :image, less_than: 2.megabyte
 
   def password=(password)

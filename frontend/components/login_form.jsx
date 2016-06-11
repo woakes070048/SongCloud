@@ -131,7 +131,7 @@ var LoginForm = React.createClass({
 			};
 			updateFile = (
 				<div>
-					<input type="file" className="user-img" onChange={this.updateFile} accept="image/jpeg, image/png, image/gif"/>
+					<input type="file" className="user-img" onChange={this.updateFile} accept="image/*"/>
 					<div className="img-div thumbnail" style={divStyle}/>
 				</div>
 			);

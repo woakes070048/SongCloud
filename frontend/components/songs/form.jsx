@@ -138,7 +138,7 @@ var SongForm = React.createClass({
     var songFileButton;
     if (this.formType() === "upload") {
       submitText = 'Upload Song';
-      songFileButton = <input type="file" className="user-img" onChange={this.updateSong} accept='audio/mpeg, audio/x-mpeg, audio/mp3, audio/x-mp3, audio/mpeg3, audio/x-mpeg3, audio/mpg, audio/x-mpg, audio/x-mpegaudio'/>;
+      songFileButton = <input type="file" className="user-img" onChange={this.updateSong} accept='audio/*'/>;
     } else {
       submitText = 'Update Song';
       songFileButton = <div className="file-placeholder" />;
@@ -160,7 +160,7 @@ var SongForm = React.createClass({
             {songFileButton}
             <div className="errors" >{ this.fieldErrors("file") }</div>
             <input className="sc-button" type="submit" value={submitText} />
-            <input type="file" className="user-img" onChange={this.updateImage} accept="image/jpeg, image/png, image/gif"/>
+            <input type="file" className="user-img" onChange={this.updateImage} accept="image/*"/>
             <div className="img-div thumbnail" style={divStyle}/>
             <div className="errors" >{ this.fieldErrors("image") }</div>
           </form>

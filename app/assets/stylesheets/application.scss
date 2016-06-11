@@ -309,10 +309,8 @@ rbody.w-content {
 .centered {
   position: relative;
   display: block;
-  top: 30px;
   width: 350px;
-  margin: auto;
-  padding-bottom: 50px;
+  margin: 30px auto;
 }
 //
 // .centered {
@@ -324,12 +322,11 @@ rbody.w-content {
 // }
 
 .signin-div {
-  top: 30px;
   width: 400px;
   // min-height: 500px;
   border: 1px solid #e5e5e5;
   position: relative;
-  margin: 0 auto;
+  margin: 30px auto;
   font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
 }
 
