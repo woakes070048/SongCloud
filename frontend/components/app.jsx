@@ -32,10 +32,10 @@ var App = React.createClass({
           <button className="float-right sc-button-nav signup" onClick={ SessionApiUtil.logout } >Log Out</button>
         </div>
       );
-    // } else if (["/login", "/signup"].indexOf(this.props.location.pathname) === -1) {
     } else {
       return (
         <div className="nav-right">
+          <button className="sc-button-nav login" onClick={this.guestUserSignIn} >Guest Login</button>
           <button className="sc-button-nav login" onClick={this.handleLogIn} >Log In</button>
           or
           <button className="sc-button-nav signup" onClick={this.handleSignUp} >Sign Up</button>
@@ -50,6 +50,17 @@ var App = React.createClass({
 
   handleSignUp: function () {
     this.context.router.push("/signup");
+  },
+
+  guestUserSignIn: function (event) {
+    event.preventDefault();
+
+    var formData = {
+      username: "user",
+      password: "password"
+    };
+
+    SessionApiUtil.login(formData);
   },
 
   render: function() {

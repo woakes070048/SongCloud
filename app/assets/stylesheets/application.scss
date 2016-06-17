@@ -205,6 +205,7 @@ nav {
 }
 
 .sc-button {
+  cursor: pointer;
   width: 100%;
   font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
   border: 1px solid #f50;
@@ -216,6 +217,11 @@ nav {
   background: #f50;
   color: #fff;
   text-align: center;
+}
+
+.guest {
+  color: #f50;
+  background: #fff;
 }
 
 .sc-google {

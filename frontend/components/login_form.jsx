@@ -122,7 +122,9 @@ var LoginForm = React.createClass({
     if (this.formType() === "login") {
       navLink = <Link to="/signup">sign up instead</Link>;
       submitText = "Sign In";
-			guestUser = <a href="" className="guest" onClick={this.guestUserSignIn}>Log in as guest</a>;
+			guestUser = <button className="sc-button guest" onClick={this.guestUserSignIn}>Log in as Guest</button>;
+
+
     } else {
       navLink = <Link to="/login">log in instead</Link>;
 			submitText = "Sign Up";
