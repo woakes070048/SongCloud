@@ -144,9 +144,12 @@ var SongForm = React.createClass({
       songFileButton = <div className="file-placeholder" />;
     }
 
-    var divStyle = {
-      backgroundImage: 'url(' + this.state.imageUrl + ')'
-    };
+    var divStyle;
+    if (this.state.imageUrl) {
+      divStyle = {
+        backgroundImage: 'url(' + this.state.imageUrl + ')'
+      };
+    }
 
 		return (
       <div className="signin-div">

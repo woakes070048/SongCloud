@@ -17,7 +17,7 @@ SongCloud allows a user to play songs continuously while allowing them to naviga
 
 ### Song List Item
 
-A song list item corresponds to a song. It holds all the song's info and includes buttons to navigate/edit/delete. Multiple items can be shown on one page and the same item can be shown on different pages. If a specific song is playing, everywhere it is shown has to be updated (especially important ).
+A song list item corresponds to a song. It holds all the song's info and includes buttons to navigate/edit/delete. Multiple items can be shown on one page and the same item can be shown on different pages. If a specific song is playing, everywhere it is shown has to be updated (especially important).
 
 #### Implementation
 
@@ -78,6 +78,31 @@ toggleStore: function () {
   });
 },
 ```
+
+## Languages
+
+- Ruby
+- JavaScript
+- SQL
+- HTML
+- CSS
+
+## Frameworks
+
+- Rails
+- React.js
+
+## Libraries and Technologies
+
+- Flux
+- React Router
+- PostgreSQL
+- BCrypt
+- jQuery
+- Paperclip
+- Google-OmniAuth
+- Webpack
+- Amazon Web Services
 
 ## Pages
 

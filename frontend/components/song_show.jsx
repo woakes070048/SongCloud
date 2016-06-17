@@ -32,11 +32,11 @@ module.exports = React.createClass({
   render: function () {
     var song = this.state.song;
     var divStyle;
-    // if (song) {
+    if (song.artist_img) {
       divStyle = {
         backgroundImage: 'url(' + song.artist_img + ')'
       };
-    // }
+    }
 
     return (
       <div>

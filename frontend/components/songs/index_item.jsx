@@ -83,9 +83,12 @@ module.exports = React.createClass({
     var playButtonState = 'player-button-' + !this.state.playState;
     var songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
 
-    var divStyle = {
-      backgroundImage: 'url(' + song.image_url + ')'
-    };
+    var divStyle;
+    if (song.image_url) {
+      divStyle = {
+        backgroundImage: 'url(' + song.image_url + ')'
+      };
+    }
 
     var songActions;
 

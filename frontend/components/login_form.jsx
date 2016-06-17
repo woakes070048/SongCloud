@@ -126,9 +126,12 @@ var LoginForm = React.createClass({
     } else {
       navLink = <Link to="/login">log in instead</Link>;
 			submitText = "Sign Up";
-			var divStyle = {
-				backgroundImage: 'url(' + this.state.imageUrl + ')'
-			};
+			var divStyle;
+			if (this.state.imageUrl) {
+				divStyle = {
+					backgroundImage: 'url(' + this.state.imageUrl + ')'
+				};
+			}
 			updateFile = (
 				<div>
 					<input type="file" className="user-img" onChange={this.updateFile} accept="image/*"/>
