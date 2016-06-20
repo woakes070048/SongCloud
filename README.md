@@ -6,7 +6,7 @@
 
 SongCloud is a clone of SoundCloud. It utilizes Ruby on Rails on the backend and React/Flux on the frontend.
 
-## Features and Implentation
+## Features and Implementation
 
 SongCloud allows a user to play songs continuously while allowing them to navigate through other parts of the website. This is possible because it utilizes React/Flux to make it a single page app.
 

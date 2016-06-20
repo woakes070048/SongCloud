@@ -4,7 +4,6 @@ var ErrorActions = require('../actions/error_actions');
 
 module.exports = {
   fetchSongs: function (filter) {
-    // var filterParam = {filter: filter ? filter : {}};
     $.ajax({
       url: "api/songs",
       data: {filter: filter},
@@ -36,7 +35,6 @@ module.exports = {
         callback(song);
       },
       error: function (xhr) {
-        console.log('SongApiUtil#createSong error');
         var errors = xhr.responseJSON;
         ErrorActions.setErrors("upload", errors);
       }
@@ -56,7 +54,6 @@ module.exports = {
         callback(song);
       },
       error: function (xhr) {
-        console.log('SongApiUtil#updateSong error');
         var errors = xhr.responseJSON;
         ErrorActions.setErrors("edit", errors);
       }

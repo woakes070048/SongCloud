@@ -65,19 +65,6 @@ module.exports = React.createClass({
     });
   },
 
-  // togglePlayerState: function () {
-  //   // this.setState({playState: !this.state.playState});
-  //
-  //   PlayerFooterActions.togglePlayerState({
-  //     songUrl: this.props.song.file_url,
-  //     playState: !this.state.playState
-  //   });
-  //
-  //   // if (PlayerFooterStore.params().song === this.props.song) {
-  //   //   this.state.play = !this.state.play;
-  //   // }
-  // },
-
   render: function () {
     var song = this.props.song;
     var playButtonState = 'player-button-' + !this.state.playState;
