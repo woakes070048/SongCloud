@@ -11,7 +11,7 @@ class Song < ActiveRecord::Base
   # has_attached_file :image, default_url: current_user.image_file_name
   # has_attached_file :image, default_url: self.artist.image_url
   # has_attached_file :image
-  has_attached_file :image, default_url: 'default_profile_img.jpg'
+  has_attached_file :image, default_url: 'default_song_img.jpg'
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_attachment_size :image, less_than: 2.megabyte
 

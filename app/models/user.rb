@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token_uniqueness
 
   has_many :songs, dependent: :destroy
+  has_many :playlists, dependent: :destroy
 
   has_attached_file :image, default_url: 'default_profile_img.jpg'
   # validates_attachment(

@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.includes(:songs).find(params[:id])
+		@user = User.find(params[:id])
 		render "api/users/show"
 	end
 
