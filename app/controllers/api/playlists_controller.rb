@@ -1,12 +1,8 @@
 class Api::PlaylistsController < ApplicationController
 	def index
-		playlists =
-			if params[:user_id]
-				Playlist.where(user_id: params[:user_id])#.includes(:user, :songs, :artist)
-			else
-				Playlist.all
-			end
-		# playlists = playlists.where(filter) if filter
+		playlists = Playlist.all
+		playlists.where(user_id: params[:user_id]) if params[:user_id]
+		playlists = playlists.where(filter) if filter
 		@playlists = playlists.includes(:user, :songs)
 		render :index
 	end

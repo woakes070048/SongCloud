@@ -26,13 +26,13 @@ SongStore.all = function (filter) {
   var songs = [];
   Object.keys(_songs).forEach(function (songId) {
     var song = _songs[songId];
-    if (!filter) {
+    // if (!filter) {
       songs.push(song);
-    } else if (filter.user_id) {
-      if (filter.user_id === song.user_id) {
-        songs.push(song);
-      }
-    }
+    // } else if (filter.user_id) {
+    //   if (filter.user_id === song.user_id) {
+    //     songs.push(song);
+    //   }
+    // }
   });
   return songs;
 };

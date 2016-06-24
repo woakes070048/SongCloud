@@ -1,4 +1,5 @@
 var React = require('react');
+var PlaylistsIndex = require('./playlists/index');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -11,7 +12,7 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-      <div></div>
+      <PlaylistsIndex filter={ { user_id: this.state.user_id } }/>
     );
   }
 });
