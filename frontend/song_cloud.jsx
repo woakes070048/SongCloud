@@ -15,6 +15,7 @@ var UserShow = require('./components/user_show');
 var UserSongs = require('./components/user_songs');
 var UserPlaylists = require('./components/user_playlists');
 var SongShow = require('./components/song_show');
+var PlaylistShow = require('./components/playlist_show');
 var SongForm = require('./components/songs/form');
 //Auth
 var SessionStore = require('./stores/session_store');
@@ -31,6 +32,7 @@ var Router = (
       <Route path="upload" component={ SongForm } onEnter={ _ensureLoggedIn }/>
       <Route path=":userId/:username/:songId/:songTitle/edit" component={ SongForm } onEnter={ _ensureLoggedIn }/>
       <Route path=":userId/:username/:songId/:songTitle" component={ SongShow } />
+      <Route path=":userId/:username/playlists/:playlistId/:playlistTitle" component={ PlaylistShow } />
       <Route path=":userId/:username" component={ UserShow } >
         <IndexRoute component={ UserSongs } />
         <Route path="songs" component={ UserSongs } />

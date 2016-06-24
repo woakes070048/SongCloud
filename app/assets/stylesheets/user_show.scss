@@ -130,6 +130,7 @@
 
 .user-menu > a.active {
   cursor: default;
+  pointer-events: none;
   border-bottom: 1px solid #f50;
   color: #f50;
 }

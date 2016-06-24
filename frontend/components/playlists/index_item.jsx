@@ -5,7 +5,7 @@ var PlayerFooterActions = require('../../actions/player_footer_actions');
 var ClientActions = require('../../actions/client_actions');
 var SessionStore = require('../../stores/session_store');
 
-var SongIndexItem = require('../songs/index_item');
+var SongIndexItem = require('./song_index_item');
 
 module.exports = React.createClass({
   contextTypes: {
@@ -68,87 +68,50 @@ module.exports = React.createClass({
   // },
 
   render: function () {
-    // var song = this.props.song;
-    // var playButtonState = 'player-button-' + !this.state.playState;
-    // var songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
-    //
-    // var divStyle;
-    // if (song.image_url) {
-    //   divStyle = {
-    //     backgroundImage: 'url(' + song.image_url + ')'
-    //   };
-    // }
+    var playlist = this.props.playlist;
+    var playlistLink = playlist.user_id + '/' + playlist.user + '/playlists/' + playlist.id + '/' + playlist.title;
 
-    // var songActions;
-    //
-    // if (this.isCurrentUser()) {
-    //   songActions = (
-    //     <div>
-    //       <button className="interactive song-button" onClick={this.editSong} title="Edit">Edit</button>
-    //       <button className="interactive song-button" onClick={this.deleteSong} title="Delete">Delete</button>
-    //     </div>
-    //   );
-    // }
+    var divStyle;
+    if (playlist.image_url) {
+      divStyle = {
+        backgroundImage: 'url(' + playlist.image_url + ')'
+      };
+    }
 
-    // var regular = (
-    //   <li className="song-index-item">
-    //     <Link to={songLink}>
-    //       <div className="song-index-img" style={divStyle} />
-    //     </Link>
-    //
-    //     <div className="song-index-header">
-    //       <div className="song-index-button-and-info">
-    //         <div className="song-index-play interactive">
-    //           <div className={ playButtonState } onClick={this.toggleStore} />
-    //         </div>
-    //         <div className="song-index-info">
-    //           <Link to={song.user_id + '/' + song.artist} className="song-index-artist">{song.artist}</Link>
-    //           <Link to={songLink} className="song-index-title">{song.title}</Link>
-    //         </div>
-    //       </div>
-    //       <div className="progress-bar">
-    //
-    //       </div>
-    //       <div className="song-actions">
-    //         {songActions}
-    //       </div>
-    //     </div>
-    //   </li>
-    // );
+    var regular = (
+      <li>
+        <Link to={playlistLink}>
+          <div className="song-index-img" style={divStyle} />
+        </Link>
+        <ul>
+          {
+            playlist.songs.map(function (song) {
+              return (<SongIndexItem key={song.id} song={song} />);
+            })
+          }
+        </ul>
+      </li>
+    );
 
-    // var songShow = (
-    //   <div className="song-show-header group">
-    //     <div className="song-show-button-and-info">
-    //       <div className="song-index-play big-play interactive">
-    //         <div className={ playButtonState  + ' big-play' } onClick={this.toggleStore} />
-    //       </div>
-    //       <div className="song-show-info">
-    //         <div className="info-top">
-    //           <Link to={song.user_id + '/' + song.artist} className="profile-info-small">{song.artist}</Link>
-    //         </div>
-    //         <h2 className="profile-info" >{song.title}</h2>
-    //         <div className="song-actions">
-    //           {songActions}
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className="thumbnail" style={divStyle}/>
-    //   </div>
-    // );
+    var playlistShow = (
+      <div className="song-show-header group">
+        <div className="song-show-button-and-info">
+          <div className="song-show-info">
+            <div className="info-top">
+              <Link to={playlist.user_id + '/' + playlist.user} className="profile-info-small">{playlist.user}</Link>
+            </div>
+            <h2 className="profile-info" >{playlist.title}</h2>
+          </div>
+        </div>
+        <div className="thumbnail" style={divStyle}/>
+      </div>
+    );
 
-    // var renderingCode = this.props.songShow ? songShow : regular;
+    var renderingCode = this.props.playlistShow ? playlistShow : regular;
 
     return (
       <div>
-        <li>
-          <ul>
-            {
-              this.props.playlist.songs.map(function (song) {
-                return (<SongIndexItem key={song.id} song={song} />);
-              })
-            }
-          </ul>
-        </li>
+        {renderingCode}
       </div>
     );
   }
