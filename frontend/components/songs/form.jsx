@@ -4,14 +4,13 @@ var SessionStore = require('./../../stores/session_store');
 var ErrorStore = require('./../../stores/error_store');
 var SongApiUtil = require('./../../util/song_api_util');
 var SongStore = require('./../../stores/song_store');
+var ClientActions = require('./../../actions/client_actions');
 
-var SongForm = React.createClass({
-
+module.exports = React.createClass({
   getInitialState: function () {
     var currentId = SessionStore.currentUser() ? SessionStore.currentUser().id : null;
     var potSong = SongStore.find(this.props.params.songId);
     potSong = potSong ? potSong : {};
-    var potDescription = potSong.description ? potSong.description : "";
     return {
       title: potSong.title ? potSong.title : "",
       description: potSong.description ? potSong.description : "",
@@ -30,8 +29,10 @@ var SongForm = React.createClass({
   },
 
   componentDidMount: function () {
+    this.songListener = SongStore.addListener(this.setSong);
     this.errorListener = ErrorStore.addListener(this.forceUpdate.bind(this));
     this.sessionListener = SessionStore.addListener(this.updateCurrentUser);
+    ClientActions.getSong(parseInt(this.props.params.songId));
   },
 
   updateCurrentUser: function () {
@@ -41,6 +42,19 @@ var SongForm = React.createClass({
 
   componentWillUnmount: function () {
     this.errorListener.remove();
+    this.sessionListener.remove();
+    this.songListener.remove();
+  },
+
+  setSong: function () {
+    var potSong = SongStore.find(this.props.params.songId);
+    potSong = potSong ? potSong : {};
+    this.setState({
+      title: potSong.title ? potSong.title : "",
+      description: potSong.description ? potSong.description : "",
+      imageFile: null,
+      imageUrl: potSong.image_url,
+    });
   },
 
 	handleSubmit: function (e) {
@@ -172,5 +186,3 @@ var SongForm = React.createClass({
 		);
 	}
 });
-
-module.exports = SongForm;
