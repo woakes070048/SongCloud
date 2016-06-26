@@ -32,16 +32,19 @@ module.exports = React.createClass({
     }
   },
 
-  toggleStore: function () {
-    PlayerFooterActions.toggleButtonState({
-      song: this.props.song,
-      playState: !this.state.playState
-    });
+  toggleStore: function (event) {
+    if (event.target.tagName !== 'A') {
+      PlayerFooterActions.toggleButtonState({
+        song: this.props.song,
+        playState: !this.state.playState
+      });
+    }
   },
 
   render: function () {
     var song = this.props.song;
     var playButtonState = 'player-button-' + !this.state.playState;
+    var songPlaying = 'song-playing-' + this.state.playState;
     var songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
 
     var divStyle;
@@ -52,22 +55,21 @@ module.exports = React.createClass({
     }
 
     var regular = (
-      <li className="song-index-item">
-        <div className="song-index-img" style={divStyle}>
-          <div className="song-index-play interactive">
-            <div className={ playButtonState } onClick={this.toggleStore} />
+      <li className={"playlist-index-item interactive " + songPlaying} onClick={this.toggleStore}>
+        <div className="song-index-img playlist" style={divStyle}>
+          <div className="song-index-play playlist">
+            <div className={ playButtonState } />
           </div>
         </div>
 
-        <div className="song-index-header">
-          <div className="song-index-button-and-info">
-            <div className="song-index-info">
-              <Link to={song.user_id + '/' + song.artist} className="song-index-artist">{song.artist}</Link>
-              <Link to={songLink} className="song-index-title">{song.title}</Link>
+        <div className="playlist-index-header">
+          <div className="playlist-index-button-and-info">
+            <div className="playlist-index-info">
+              <p className="playlist-index-num">{this.props.index}</p>
+              <Link to={song.user_id + '/' + song.artist} className="playlist-song-artist">{song.artist}</Link>
+              <span>-</span>
+              <Link to={songLink} className="playlist-song-title truncate">{song.title}</Link>
             </div>
-          </div>
-          <div className="progress-bar">
-
           </div>
         </div>
       </li>

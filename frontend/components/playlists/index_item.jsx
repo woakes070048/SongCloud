@@ -12,11 +12,12 @@ module.exports = React.createClass({
     router: React.PropTypes.object.isRequired
   },
 
-  // getInitialState: function () {
-  //   var init = (PlayerFooterStore.song() && PlayerFooterStore.song().id === this.props.song.id) ? PlayerFooterStore.playState() : false;
-  //   var currentId = SessionStore.currentUser() ? SessionStore.currentUser().id : null;
-  //   return({ playState: init, currentUserId: currentId });
-  // },
+  getInitialState: function () {
+    // var init = (PlayerFooterStore.song() && PlayerFooterStore.song().id === this.props.song.id) ? PlayerFooterStore.playState() : false;
+    var init = false;
+    var currentId = SessionStore.currentUser() ? SessionStore.currentUser().id : null;
+    return({ playState: init, currentUserId: currentId });
+  },
   //
   // editSong: function (event) {
   //   if (this.isCurrentUser()) {
@@ -69,6 +70,8 @@ module.exports = React.createClass({
 
   render: function () {
     var playlist = this.props.playlist;
+    var playlistSongs = playlist.songs || [];
+    var playButtonState = 'player-button-' + !this.state.playState;
     var playlistLink = playlist.user_id + '/' + playlist.user + '/playlists/' + playlist.id + '/' + playlist.title;
 
     var divStyle;
@@ -85,8 +88,8 @@ module.exports = React.createClass({
         </Link>
         <ul>
           {
-            playlist.songs.map(function (song) {
-              return (<SongIndexItem key={song.id} song={song} />);
+            playlistSongs.map(function (song, index) {
+              return (<SongIndexItem key={song.id} index={index + 1} song={song} />);
             })
           }
         </ul>
@@ -96,6 +99,9 @@ module.exports = React.createClass({
     var playlistShow = (
       <div className="song-show-header group">
         <div className="song-show-button-and-info">
+          <div className="song-index-play big-play interactive">
+            <div className={ playButtonState } onClick={this.toggleStore} />
+          </div>
           <div className="song-show-info">
             <div className="info-top">
               <Link to={playlist.user_id + '/' + playlist.user} className="profile-info-small">{playlist.user}</Link>

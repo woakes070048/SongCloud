@@ -27,7 +27,7 @@ var App = React.createClass({
           <a className="upload" href='#/upload'>Upload</a>
           <Link className="group user" to={curUser.id + '/' + curUser.username} >
             <div className="profile-img thumbnail circular" style={divStyle} />
-            <div className="user-profile" >{curUser.username}</div>
+            <div className="user-profile truncate" >{curUser.username}</div>
           </Link>
           <button className="float-right sc-button-nav signup" onClick={ SessionApiUtil.logout } >Log Out</button>
         </div>

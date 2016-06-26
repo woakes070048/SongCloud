@@ -153,10 +153,13 @@ nav {
   color: #999;
   max-width: 149px;
   overflow: hidden;
+  display: table-cell;
+}
+
+.truncate {
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: normal;
-  display: table-cell;
 }
 
 .profile-img {
@@ -375,8 +378,6 @@ rbody.w-content {
   margin-top: 10px;
   border: 1px solid #ccc;
 }
-
-
 
 .song-index {
   min-height: 500px;

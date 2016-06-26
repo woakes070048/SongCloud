@@ -32,15 +32,17 @@ module.exports = React.createClass({
   render: function () {
     var song = this.state.song;
     var divStyle;
+    var songItem;
     if (song.artist_img) {
       divStyle = {
         backgroundImage: 'url(' + song.artist_img + ')'
       };
+      songItem = <SongIndexItem song={song} songShow={true}/>;
     }
 
     return (
       <div>
-        <SongIndexItem song={song} songShow={true}/>
+        {songItem}
         <div className="song-content">
           <div className="about-main group">
             <div className="about-left">

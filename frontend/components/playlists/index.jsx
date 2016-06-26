@@ -29,8 +29,8 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-      <div className="playlist-index">
-        <ul className="playlist-index-list">
+      <div className="song-index">
+        <ul className="song-index-list">
           {
             this.state.playlists.map(function (playlist) {
               return (<PlaylistIndexItem key={playlist.id} playlist={playlist} />);

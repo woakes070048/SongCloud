@@ -118,7 +118,7 @@ module.exports = React.createClass({
       <div className="song-show-header group">
         <div className="song-show-button-and-info">
           <div className="song-index-play big-play interactive">
-            <div className={ playButtonState  + ' big-play' } onClick={this.toggleStore} />
+            <div className={ playButtonState } onClick={this.toggleStore} />
           </div>
           <div className="song-show-info">
             <div className="info-top">

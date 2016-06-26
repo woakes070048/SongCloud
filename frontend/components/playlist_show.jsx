@@ -56,8 +56,8 @@ module.exports = React.createClass({
               {playlist.description}
               <ul>
                 {
-                  playlistSongs.map(function (song) {
-                    return (<SongIndexItem key={song.id} song={song} />);
+                  playlistSongs.map(function (song, index) {
+                    return (<SongIndexItem key={song.id} index={index + 1} song={song} />);
                   })
                 }
               </ul>
