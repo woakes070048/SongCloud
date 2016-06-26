@@ -7,6 +7,10 @@ module.exports = {
     SongApiUtil.fetchSongs(filter);
   },
 
+  fetchUserSongs: function (userId) {
+    SongApiUtil.fetchUserSongs(userId);
+  },
+
   getSong: function (id) {
     SongApiUtil.getSong(id);
   },
@@ -25,6 +29,10 @@ module.exports = {
 
   fetchPlaylists: function (filter) {
     PlaylistApiUtil.fetchPlaylists(filter);
+  },
+
+  fetchUserPlaylists: function (userId) {
+    PlaylistApiUtil.fetchUserPlaylists(userId);
   },
 
   getPlaylist: function (id) {

@@ -1,8 +1,9 @@
 var React = require('react');
 var Link = require('react-router').Link;
-var SongIndexItem = require('./songs/index_item');
 var SongStore = require('./../stores/song_store');
 var ClientActions = require('../actions/client_actions');
+
+var SongIndexItem = require('./songs/index_item');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -16,7 +17,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getSong(parseInt(this.props.params.songId));
+    ClientActions.getSong(parseInt(newProps.params.songId));
   },
 
   componentWillUnmount: function () {
@@ -27,7 +28,6 @@ module.exports = React.createClass({
     var song = SongStore.find(this.props.params.songId);
     this.setState({ song: song });
   },
-
 
   render: function () {
     var song = this.state.song;

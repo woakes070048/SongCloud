@@ -1,18 +1,45 @@
 var React = require('react');
-var PlaylistsIndex = require('./playlists/index');
+var PlaylistStore = require('../stores/playlist_store');
+var ClientActions = require('../actions/client_actions');
+
+var PlaylistIndexItem = require('./playlists/index_item');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { user_id: parseInt(this.props.params.userId) };
+    return { playlists: [] };
+  },
+  componentDidMount: function () {
+    this.playlistListener = PlaylistStore.addListener(this.getUserPlaylists);
+    var userId = parseInt(this.props.params.userId);
+    ClientActions.fetchUserPlaylists(userId);
   },
 
   componentWillReceiveProps: function (newProps) {
-    this.setState({ user_id: parseInt(newProps.params.userId) });
+    if (newProps.params.userId !== this.props.params.userId) {
+      var userId = parseInt(newProps.params.userId);
+      ClientActions.fetchUserPlaylists(userId);
+    }
+  },
+
+  componentWillUnmount: function () {
+    this.playlistListener.remove();
+  },
+
+  getUserPlaylists: function () {
+    this.setState({ playlists: PlaylistStore.all() });
   },
 
   render: function () {
     return (
-      <PlaylistsIndex filter={ { user_id: this.state.user_id } }/>
+      <div className="song-index">
+        <ul className="song-index-list">
+          {
+            this.state.playlists.map(function (playlist) {
+              return (<PlaylistIndexItem key={playlist.id} playlist={playlist} />);
+            })
+          }
+        </ul>
+      </div>
     );
   }
 });

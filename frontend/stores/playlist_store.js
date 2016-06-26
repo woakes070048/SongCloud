@@ -26,13 +26,13 @@ PlaylistStore.all = function (filter) {
   var playlists = [];
   Object.keys(_playlists).forEach(function (playlistId) {
     var playlist = _playlists[playlistId];
-    if (!filter) {
+    // if (!filter) {
       playlists.push(playlist);
-    } else if (filter.user_id) {
-      if (filter.user_id === playlist.user_id) {
-        playlists.push(playlist);
-      }
-    }
+    // } else if (filter.user_id) {
+    //   if (filter.user_id === playlist.user_id) {
+    //     playlists.push(playlist);
+    //   }
+    // }
   });
   return playlists;
 };

@@ -4,7 +4,7 @@ var SongConstants = require('../constants/song_constants');
 var PlaylistConstants = require('../constants/playlist_constants');
 
 module.exports = {
-  receiveAll: function (songs) {
+  receiveSongs: function (songs) {
     AppDispatcher.dispatch({
       actionType: SongConstants.SONGS_RECEIVED,
       songs: songs

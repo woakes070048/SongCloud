@@ -2,14 +2,13 @@ var React = require('react');
 var Link = require('react-router').Link;
 var UserStore = require('../stores/user_store');
 var ClientActions = require('../actions/client_actions');
-var SongIndexItem = require('./songs/index_item');
 
+var SongIndexItem = require('./songs/index_item');
 
 module.exports = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-
 
   getInitialState: function () {
     return {};
@@ -21,7 +20,9 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getUser(parseInt(newProps.params.userId));
+    if (newProps.params.userId !== this.props.params.userId) {
+      ClientActions.getUser(parseInt(newProps.params.userId));
+    }
   },
 
   componentWillUnmount: function () {

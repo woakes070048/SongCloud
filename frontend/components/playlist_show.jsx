@@ -1,9 +1,9 @@
 var React = require('react');
 var Link = require('react-router').Link;
-var PlaylistIndexItem = require('./playlists/index_item');
 var PlaylistStore = require('./../stores/playlist_store');
 var ClientActions = require('../actions/client_actions');
 
+var PlaylistIndexItem = require('./playlists/index_item');
 var SongIndexItem = require('./playlists/song_index_item');
 
 module.exports = React.createClass({
@@ -18,7 +18,7 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getPlaylist(parseInt(this.props.params.playlistId));
+    ClientActions.getPlaylist(parseInt(newProps.params.playlistId));
   },
 
   componentWillUnmount: function () {

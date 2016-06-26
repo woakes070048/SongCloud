@@ -14,7 +14,7 @@ module.exports = {
 
   fetchUserPlaylists: function (userId) {
     $.ajax({
-      url: "api/users/" + userId + "playlists",
+      url: "api/users/" + userId + "/playlists",
       success: function (playlists) {
         ServerActions.receivePlaylists(playlists);
       }

@@ -1,14 +1,22 @@
 var ServerActions = require('../actions/server_actions');
 var ErrorActions = require('../actions/error_actions');
 
-
 module.exports = {
   fetchSongs: function (filter) {
     $.ajax({
       url: "api/songs",
       data: {filter: filter},
       success: function (songs) {
-        ServerActions.receiveAll(songs);
+        ServerActions.receiveSongs(songs);
+      }
+    });
+  },
+
+  fetchUserSongs: function (userId) {
+    $.ajax({
+      url: "api/users/" + userId + "/songs",
+      success: function (songs) {
+        ServerActions.receiveSongs(songs);
       }
     });
   },
