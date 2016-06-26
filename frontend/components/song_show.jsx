@@ -17,7 +17,9 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getSong(parseInt(newProps.params.songId));
+    if (newProps.params.songId !== this.props.params.songId) {
+      ClientActions.getSong(parseInt(newProps.params.songId));
+    }
   },
 
   componentWillUnmount: function () {

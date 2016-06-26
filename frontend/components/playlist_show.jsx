@@ -18,7 +18,9 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    ClientActions.getPlaylist(parseInt(newProps.params.playlistId));
+    if (newProps.params.playlistId !== this.props.params.playlistId) {
+      ClientActions.getPlaylist(parseInt(newProps.params.playlistId));
+    }
   },
 
   componentWillUnmount: function () {

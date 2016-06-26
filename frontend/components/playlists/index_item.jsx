@@ -34,9 +34,9 @@ module.exports = React.createClass({
   //   }
   // },
   //
-  // isCurrentUser: function () {
-  //   return this.state.currentUserId === this.props.song.user_id;
-  // },
+  isCurrentUser: function () {
+    return this.state.currentUserId === this.props.playlist.user_id;
+  },
   //
   // componentDidMount: function () {
   //   this.playerFooterListener = PlayerFooterStore.addListener(this.toggleButtonState);
@@ -81,18 +81,54 @@ module.exports = React.createClass({
       };
     }
 
+    var playlistActions;
+
+    if (this.isCurrentUser()) {
+      playlistActions = (
+        <div>
+          <button className="interactive song-button" onClick={this.editSong} title="Edit">Edit</button>
+          <button className="interactive song-button" onClick={this.deleteSong} title="Delete">Delete</button>
+        </div>
+      );
+    }
+
+    var countWord = playlistSongs.length === 1 ? 'track' : 'tracks';
+
     var regular = (
-      <li>
+      <li className="song-index-item">
         <Link to={playlistLink}>
-          <div className="song-index-img" style={divStyle} />
+          <div className="song-index-img" style={divStyle} >
+            <div className="playlist-count small">
+              <div>{playlistSongs.length}</div>
+              <div>{countWord}</div>
+            </div>
+          </div>
         </Link>
-        <ul>
-          {
-            playlistSongs.map(function (song, index) {
-              return (<SongIndexItem key={song.id} index={index + 1} song={song} />);
-            })
-          }
-        </ul>
+
+        <div className="song-index-header">
+          <div className="song-index-button-and-info">
+            <div className="song-index-play interactive">
+              <div className={ playButtonState } onClick={this.toggleStore} />
+            </div>
+            <div className="song-index-info">
+              <Link to={playlist.user_id + '/' + playlist.user} className="song-index-artist">{playlist.user}</Link>
+              <Link to={playlistLink} className="song-index-title">{playlist.title}</Link>
+            </div>
+          </div>
+          <div className="progress-bar">
+
+          </div>
+          <ul>
+            {
+              playlistSongs.map(function (song, index) {
+                return (<SongIndexItem key={song.id} index={index + 1} song={song} />);
+              })
+            }
+          </ul>
+          <div className="song-actions">
+            {playlistActions}
+          </div>
+        </div>
       </li>
     );
 
@@ -107,9 +143,16 @@ module.exports = React.createClass({
               <Link to={playlist.user_id + '/' + playlist.user} className="profile-info-small">{playlist.user}</Link>
             </div>
             <h2 className="profile-info" >{playlist.title}</h2>
+            <div className="song-actions">
+              {playlistActions}
+            </div>
           </div>
         </div>
         <div className="thumbnail" style={divStyle}/>
+        <div className="playlist-count big">
+          <div className="count-num">{playlistSongs.length}</div>
+          <div className="count-word">{countWord}</div>
+        </div>
       </div>
     );
 

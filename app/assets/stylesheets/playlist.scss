@@ -120,3 +120,40 @@
 .song-button:hover {
   border: 1px solid #999;
 }
+
+.playlist-count {
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  box-sizing: border-box;
+  padding-top: 13px;
+}
+
+.playlist-count.small {
+  left: 10px;
+  top: 90px;
+}
+
+.playlist-count.big {
+  left: 30px;
+  bottom: 20px;
+  padding-top: 23px;
+  width: 110px;
+  height: 110px;
+}
+
+.count-num {
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+.count-word {
+  font-size: 12px;
+  text-transform: uppercase;
+}
