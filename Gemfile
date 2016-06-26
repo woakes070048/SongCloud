@@ -26,6 +26,8 @@ gem 'figaro'
 gem 'aws-sdk', '>= 2.0'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'pry'
+gem 'pry-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
