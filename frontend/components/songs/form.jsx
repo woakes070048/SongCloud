@@ -32,7 +32,9 @@ module.exports = React.createClass({
     this.songListener = SongStore.addListener(this.setSong);
     this.errorListener = ErrorStore.addListener(this.forceUpdate.bind(this));
     this.sessionListener = SessionStore.addListener(this.updateCurrentUser);
-    ClientActions.getSong(parseInt(this.props.params.songId));
+    if (this.props.params.songId) {
+      ClientActions.getSong(parseInt(this.props.params.songId));
+    }
   },
 
   updateCurrentUser: function () {
@@ -70,7 +72,7 @@ module.exports = React.createClass({
 		} else {
       formData.append("song[description]", this.state.description);
     }
-    if (this.formType() === "upload") {
+    if (this.formType() === "upload" && SessionStore.currentUser().id) {
       formData.append("song[user_id]", SessionStore.currentUser().id);
       if (this.state.songFile) {
         formData.append("song[file]", this.state.songFile);
