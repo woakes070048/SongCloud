@@ -71,7 +71,7 @@ module.exports = React.createClass({
             ©2016
             <a target="_blank" href="https://soundcloud.com"> SoundCloud </a>
             Clone by Eric Moy -
-            <a target="_blank" href="https://github.com/EricMoy/PlaylistCloud"> (Github Page)</a>
+            <a target="_blank" href="https://github.com/EricMoy/SongCloud"> (Github Page)</a>
           </div>
         </div>
       </div>
