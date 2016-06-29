@@ -5,6 +5,8 @@ var ClientActions = require('../actions/client_actions');
 
 var SongIndexItem = require('./songs/index_item');
 
+var Sidebar = require('./sidebar');
+
 module.exports = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
@@ -68,14 +70,7 @@ module.exports = React.createClass({
         </div>
         <div className="content-with-sidebar">
           {this.props.children}
-          <div className="user-show sidebar">
-            <div className="sidebar-footer">
-              ©2016
-              <a target="_blank" href="https://soundcloud.com"> SoundCloud </a>
-              Clone by Eric Moy -
-              <a target="_blank" href="https://github.com/EricMoy/SongCloud"> (Github Page)</a>
-            </div>
-          </div>
+          <Sidebar />
         </div>
       </div>
     );

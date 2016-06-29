@@ -6,6 +6,8 @@ var ClientActions = require('../actions/client_actions');
 var PlaylistIndexItem = require('./playlists/index_item');
 var SongIndexItem = require('./playlists/song_index_item');
 
+var Sidebar = require('./sidebar');
+
 module.exports = React.createClass({
   getInitialState: function () {
     var potPlaylist = PlaylistStore.find(this.props.params.playlistId);
@@ -65,17 +67,9 @@ module.exports = React.createClass({
               </ul>
             </div>
           </div>
-
-        <div className="user-show sidebar">
-          <div className="sidebar-footer">
-            ©2016
-            <a target="_blank" href="https://soundcloud.com"> SoundCloud </a>
-            Clone by Eric Moy -
-            <a target="_blank" href="https://github.com/EricMoy/SongCloud"> (Github Page)</a>
-          </div>
+          <Sidebar />
         </div>
       </div>
-    </div>
     );
   }
 });
