@@ -433,16 +433,16 @@ rbody.w-content {
 }
 
 .player-button-true {
-  background: asset-url('index_play.png') no-repeat;
-  background-size: 20px 24px;
-  background-position: center center;
+  background: asset-url('index_play.svg') no-repeat;
+  background-size: 40% 60%;
+  background-position: 60% center;
   height: 100%;
 }
 
 .player-button-false {
-  background: asset-url('index_pause.png') no-repeat;
-  background-size: 20px 24px;
-  background-position: center center;
+  background: asset-url('index_pause.svg') no-repeat;
+  background-size: 42% 56%;
+  background-position: 50% 51%;
   height: 100%;
 }
 
