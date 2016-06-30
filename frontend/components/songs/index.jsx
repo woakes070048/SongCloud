@@ -29,12 +29,20 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    var playFrom = this.props.playFrom;
     return (
       <div className="song-index">
         <ul className="song-index-list">
           {
-            this.state.songs.map(function (song) {
-              return (<SongIndexItem key={song.id} song={song} />);
+            this.state.songs.map(function (song, index) {
+              return (
+                <SongIndexItem
+                  key={song.id}
+                  song={song}
+                  index={index}
+                  playFrom={playFrom}
+                />
+              );
             })
           }
         </ul>

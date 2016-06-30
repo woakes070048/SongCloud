@@ -59,10 +59,12 @@ module.exports = React.createClass({
   },
 
   toggleStore: function () {
+    if (PlayerFooterStore.song().id !== this.props.song.id && !this.state.playState) {
+      PlayerFooterActions.updatePlayFrom(this.props.playFrom);
+    }
     PlayerFooterActions.toggleButtonState({
       song: this.props.song,
       playState: !this.state.playState,
-      playFrom: this.props.playFrom
     });
   },
 

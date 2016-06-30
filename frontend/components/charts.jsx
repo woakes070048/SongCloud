@@ -4,9 +4,14 @@ var Sidebar = require('./sidebar');
 
 module.exports = React.createClass({
   render: function () {
+    var playFrom = {
+      link: this.props.location.pathname,
+      linkText: "Playing from charts"
+    };
+    
     return (
       <div className="content-with-sidebar">
-        <SongsIndex />
+        <SongsIndex playFrom={playFrom} />
         <Sidebar />
       </div>
     );

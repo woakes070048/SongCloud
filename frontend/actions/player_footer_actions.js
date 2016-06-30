@@ -9,19 +9,29 @@ var PlayerFooterActions = {
     });
   },
 
+  updatePlayFrom: function (playFrom) {
+    AppDispatcher.dispatch({
+      actionType: PlayerFooterConstants.UPDATE_PLAY_FROM,
+      playFrom: playFrom
+    });
+  },
+
   togglePlayerState: function (songParams) {
     var footerPlayer = document.getElementById('player-footer');
     if (footerPlayer.src !== songParams.song.file_url) {
       footerPlayer.src = songParams.song.file_url;
     }
-    switch(songParams.playState) {
-      case false:
+
+    setTimeout(function(){
+      switch(songParams.playState) {
+        case false:
         footerPlayer.pause();
         break;
-      case true:
+        case true:
         footerPlayer.play();
         break;
-    }
+      }
+    }, 0);
   }
 };
 

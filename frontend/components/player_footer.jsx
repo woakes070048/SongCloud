@@ -39,6 +39,7 @@ module.exports = React.createClass({
     var songInfo;
     var songLink;
     var divStyle;
+    var playFrom = this.state.playFrom || { link: '', linkText: 'Playing' };
     if (song && song.user_id) {
       hiddenPlayer = "";
       songLink = song.user_id + '/' + song.artist + '/' + song.id + '/' + song.title;
@@ -52,7 +53,7 @@ module.exports = React.createClass({
             <div className="song-index-img footer-img" style={divStyle} />
           </Link>
           <div className="text-container">
-            <Link to={this.state.playFrom.link} className="footer-playing">{this.state.playFrom.linkText}</Link>
+            <Link to={playFrom.link} className="footer-playing">{playFrom.linkText}</Link>
             <Link to={songLink} className="footer-title">{song.title}</Link>
           </div>
         </div>
