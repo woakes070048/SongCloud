@@ -37,11 +37,22 @@ module.exports = React.createClass({
     var song = this.state.song;
     var divStyle;
     var songItem;
+    var playFrom = {
+      link: this.props.location.pathname,
+      linkText: "Playing song"
+    };
+
     if (song.artist_img) {
       divStyle = {
         backgroundImage: 'url(' + song.artist_img + ')'
       };
-      songItem = <SongIndexItem song={song} songShow={true}/>;
+
+      songItem =
+        <SongIndexItem
+          song={song}
+          songShow={true}
+          playFrom={playFrom}
+        />;
     }
 
     return (

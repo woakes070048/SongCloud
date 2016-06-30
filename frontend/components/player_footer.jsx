@@ -52,7 +52,7 @@ module.exports = React.createClass({
             <div className="song-index-img footer-img" style={divStyle} />
           </Link>
           <div className="text-container">
-            <Link to={song.user_id + '/' + song.artist} className="footer-playing">{song.artist}</Link>
+            <Link to={this.state.playFrom.link} className="footer-playing">{this.state.playFrom.linkText}</Link>
             <Link to={songLink} className="footer-title">{song.title}</Link>
           </div>
         </div>

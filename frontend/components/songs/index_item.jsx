@@ -61,7 +61,8 @@ module.exports = React.createClass({
   toggleStore: function () {
     PlayerFooterActions.toggleButtonState({
       song: this.props.song,
-      playState: !this.state.playState
+      playState: !this.state.playState,
+      playFrom: this.props.playFrom
     });
   },
 
