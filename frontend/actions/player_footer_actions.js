@@ -32,7 +32,19 @@ var PlayerFooterActions = {
         break;
       }
     }, 0);
-  }
+  },
+
+  playPrev: function () {
+    AppDispatcher.dispatch({
+      actionType: PlayerFooterConstants.PLAY_PREV,
+    });
+  },
+
+  playNext: function () {
+    AppDispatcher.dispatch({
+      actionType: PlayerFooterConstants.PLAY_NEXT,
+    });
+  },
 };
 
 module.exports = PlayerFooterActions;

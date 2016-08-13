@@ -6,7 +6,11 @@ var Link = require('react-router').Link;
 module.exports = React.createClass({
 
   getInitialState: function () {
-    return(PlayerFooterStore.params());
+    return({
+      song: PlayerFooterStore.song(),
+      playState: PlayerFooterStore.playState(),
+      playFrom: PlayerFooterStore.playFrom()
+    });
   },
 
   componentDidMount: function () {
@@ -18,7 +22,11 @@ module.exports = React.createClass({
   },
 
   togglePlayerState: function () {
-    var songParams = PlayerFooterStore.params();
+    var songParams = {
+      song: PlayerFooterStore.song(),
+      playState: PlayerFooterStore.playState(),
+      playFrom: PlayerFooterStore.playFrom()
+    };
     this.setState(songParams);
     PlayerFooterActions.togglePlayerState(songParams);
   },
@@ -30,6 +38,14 @@ module.exports = React.createClass({
         playState: !this.state.playState
       });
     }
+  },
+
+  playPrev: function () {
+    PlayerFooterActions.playPrev();
+  },
+
+  playNext: function () {
+    PlayerFooterActions.playNext();
   },
 
   render: function () {
@@ -63,9 +79,9 @@ module.exports = React.createClass({
     return (
       <div className={"player-footer " + hiddenPlayer}>
         <div className="w-container group">
-          <div className="skip-control control-prev" />
+          <div className="skip-control control-prev" onClick={this.playPrev}/>
           <div className={ "play-control " + playButtonState } onClick={this.toggleStore} />
-          <div className="skip-control control-next" />
+          <div className="skip-control control-next" onClick={this.playNext}/>
           <div className="current-song-info">
             {songInfo}
           </div>
