@@ -61,6 +61,8 @@ module.exports = React.createClass({
   toggleStore: function () {
     var songParams = {
       song: this.props.song,
+      queue: this.props.queue,
+      index: this.props.index,
       playState: !this.state.playState
     };
     if (!this.state.playState) {

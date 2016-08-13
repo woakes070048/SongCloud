@@ -36,6 +36,7 @@ module.exports = React.createClass({
       link: this.props.location.pathname,
       linkText: "Playing from " + this.props.params.username + "'s songs"
     };
+    var songs = this.state.songs;
 
     return (
       <div className="song-index">
@@ -48,6 +49,7 @@ module.exports = React.createClass({
                   song={song}
                   index={index}
                   playFrom={playFrom}
+                  queue={songs}
                 />
               );
             })

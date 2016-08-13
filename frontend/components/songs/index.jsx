@@ -30,6 +30,7 @@ module.exports = React.createClass({
 
   render: function () {
     var playFrom = this.props.playFrom;
+    var songs = this.state.songs;
     return (
       <div className="song-index">
         <ul className="song-index-list">
@@ -41,6 +42,7 @@ module.exports = React.createClass({
                   song={song}
                   index={index}
                   playFrom={playFrom}
+                  queue={songs}
                 />
               );
             })

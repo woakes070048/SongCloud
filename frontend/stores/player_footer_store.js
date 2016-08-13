@@ -24,7 +24,7 @@ function handleItemPress(songParams) {
     _next = [];
   }
   if (songParams.song.id !== _params.song.id && Object.keys(_params.song).length > 0) {
-    _prev.push([_params.song, _params.playFrom]);
+    _prev.push(Object.assign({}, _params));
   }
   for (var songParam in songParams) {
     _params[songParam] = songParams[songParam];
@@ -34,9 +34,8 @@ function handleItemPress(songParams) {
 function playPrev () {
   if (_prev.length > 0) {
     var prevSong = _prev.pop();
-    _next.unshift([_params.song, _params.playFrom]);
-    _params.song = prevSong[0];
-    _params.playFrom = prevSong[1];
+    _next.unshift(Object.assign({}, _params));
+    _params = prevSong;
   }
   _params.playState = true;
 }
@@ -44,10 +43,15 @@ function playPrev () {
 function playNext () {
   if (_next.length > 0) {
     var nextSong = _next.shift();
-    _prev.push([_params.song, _params.playFrom]);
-    _params.song = nextSong[0];
-    _params.playFrom = nextSong[1];
-  } else {}
+    _prev.push(Object.assign({}, _params));
+    _params = nextSong;
+  } else if (_params.queue) {
+    _params.index += 1;
+    if (_params.queue[_params.index]) {
+      _prev.push(Object.assign({}, _params));
+      _params.song = _params.queue[_params.index];
+    }
+  }
   _params.playState = true;
 }
 
